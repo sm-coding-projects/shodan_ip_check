@@ -1,0 +1,579 @@
+/* Modern Alert States
+ * This file contains styles for error and success states, notifications,
+ * and feedback components with smooth animations and transitions
+ */
+
+/* ===== Alert Component Base Styles ===== */
+.alert {
+  --alert-border-radius: var(--border-radius-md);
+  --alert-padding: var(--space-4);
+  --alert-margin: var(--space-4) 0;
+  --alert-border-width: 1px;
+  --alert-icon-size: 24px;
+  
+  position: relative;
+  padding: var(--alert-padding);
+  margin: var(--alert-margin);
+  border-radius: var(--alert-border-radius);
+  border-width: var(--alert-border-width);
+  border-style: solid;
+  display: flex;
+  align-items: flex-start;
+  gap: var(--space-3);
+  overflow: hidden;
+  opacity: 0;
+  transform: translateY(10px);
+  animation: alert-appear var(--animation-duration-normal) var(--animation-easing-decelerate) forwards;
+  box-shadow: var(--shadow-sm);
+  transition: all var(--animation-duration-normal) var(--animation-easing-standard);
+}
+
+.alert:hover {
+  box-shadow: var(--shadow-md);
+  transform: translateY(-2px);
+}
+
+/* Alert Icon */
+.alert-icon {
+  flex-shrink: 0;
+  width: var(--alert-icon-size);
+  height: var(--alert-icon-size);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  background-color: currentColor;
+  color: var(--text-inverse);
+  font-size: calc(var(--alert-icon-size) * 0.6);
+}
+
+/* Alert Content */
+.alert-content {
+  flex: 1;
+}
+
+/* Alert Title */
+.alert-title {
+  font-weight: var(--font-weight-semibold);
+  font-size: var(--font-size-md);
+  margin-bottom: var(--space-1);
+  line-height: var(--line-height-snug);
+}
+
+/* Alert Message */
+.alert-message {
+  font-size: var(--font-size-sm);
+  color: inherit;
+  opacity: 0.9;
+  margin: 0;
+}
+
+/* Alert Close Button */
+.alert-close {
+  flex-shrink: 0;
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  border: none;
+  background: transparent;
+  color: currentColor;
+  opacity: 0.7;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all var(--animation-duration-fast) var(--animation-easing-standard);
+}
+
+.alert-close:hover {
+  opacity: 1;
+  background-color: rgba(0, 0, 0, 0.05);
+  transform: scale(1.1);
+}
+
+.alert-close:active {
+  transform: scale(0.95);
+}
+
+/* Alert Accent Border */
+.alert::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: 4px;
+  background-color: currentColor;
+  border-top-left-radius: var(--alert-border-radius);
+  border-bottom-left-radius: var(--alert-border-radius);
+}
+
+/* ===== Alert Variants ===== */
+
+/* Success Alert */
+.alert-success {
+  background-color: var(--success-bg);
+  border-color: var(--success-300);
+  color: var(--success);
+}
+
+/* Error Alert */
+.alert-error {
+  background-color: var(--error-bg);
+  border-color: var(--error-300);
+  color: var(--error);
+}
+
+/* Warning Alert */
+.alert-warning {
+  background-color: var(--warning-bg);
+  border-color: var(--warning-300);
+  color: var(--warning);
+}
+
+/* Info Alert */
+.alert-info {
+  background-color: var(--info-bg);
+  border-color: var(--info-300);
+  color: var(--info);
+}
+
+/* ===== Alert Sizes ===== */
+
+/* Small Alert */
+.alert-sm {
+  --alert-padding: var(--space-2) var(--space-3);
+  --alert-icon-size: 18px;
+  font-size: var(--font-size-xs);
+}
+
+.alert-sm .alert-title {
+  font-size: var(--font-size-sm);
+}
+
+.alert-sm .alert-message {
+  font-size: var(--font-size-xs);
+}
+
+/* Large Alert */
+.alert-lg {
+  --alert-padding: var(--space-5);
+  --alert-icon-size: 32px;
+}
+
+.alert-lg .alert-title {
+  font-size: var(--font-size-lg);
+}
+
+.alert-lg .alert-message {
+  font-size: var(--font-size-md);
+}
+
+/* ===== Alert Animations ===== */
+
+/* Alert Appear Animation */
+@keyframes alert-appear {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Alert Disappear Animation */
+.alert-disappear {
+  animation: alert-disappear var(--animation-duration-normal) var(--animation-easing-decelerate) forwards;
+}
+
+@keyframes alert-disappear {
+  from {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  to {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+}
+
+/* Alert Shake Animation (for errors) */
+.alert-shake {
+  animation: alert-shake var(--animation-duration-normal) cubic-bezier(.36,.07,.19,.97) both;
+}
+
+@keyframes alert-shake {
+  0%, 100% { transform: translateX(0); }
+  10%, 30%, 50%, 70%, 90% { transform: translateX(-5px); }
+  20%, 40%, 60%, 80% { transform: translateX(5px); }
+}
+
+/* Alert Pulse Animation (for success) */
+.alert-pulse {
+  animation: alert-pulse var(--animation-duration-normal) var(--animation-easing-bounce);
+}
+
+@keyframes alert-pulse {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.03); }
+  100% { transform: scale(1); }
+}
+
+/* ===== Toast Notifications ===== */
+.toast-container {
+  position: fixed;
+  z-index: 9999;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+  max-width: 400px;
+  width: calc(100% - var(--space-8));
+}
+
+/* Toast Positions */
+.toast-top-right {
+  top: var(--space-4);
+  right: var(--space-4);
+}
+
+.toast-top-left {
+  top: var(--space-4);
+  left: var(--space-4);
+}
+
+.toast-bottom-right {
+  bottom: var(--space-4);
+  right: var(--space-4);
+}
+
+.toast-bottom-left {
+  bottom: var(--space-4);
+  left: var(--space-4);
+}
+
+.toast-top-center {
+  top: var(--space-4);
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.toast-bottom-center {
+  bottom: var(--space-4);
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+/* Toast Notification */
+.toast {
+  border-radius: var(--border-radius-md);
+  box-shadow: var(--shadow-md);
+  overflow: hidden;
+  animation: toast-in var(--animation-duration-normal) var(--animation-easing-decelerate) forwards;
+  max-width: 100%;
+}
+
+.toast.alert {
+  margin: 0;
+}
+
+/* Toast Animations */
+@keyframes toast-in {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.toast-out {
+  animation: toast-out var(--animation-duration-normal) var(--animation-easing-decelerate) forwards;
+}
+
+@keyframes toast-out {
+  from {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  to {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+}
+
+/* Toast Progress Bar */
+.toast-progress {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  height: 3px;
+  background-color: currentColor;
+  opacity: 0.5;
+  width: 100%;
+  transform-origin: left;
+}
+
+/* ===== Inline Form Feedback ===== */
+.form-feedback {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  font-size: var(--font-size-sm);
+  margin-top: var(--space-2);
+  padding: var(--space-2);
+  border-radius: var(--border-radius-sm);
+  animation: feedback-appear var(--animation-duration-normal) var(--animation-easing-standard) forwards;
+  opacity: 0;
+}
+
+@keyframes feedback-appear {
+  from {
+    opacity: 0;
+    transform: translateY(-5px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.form-feedback-success {
+  color: var(--success);
+  background-color: var(--success-bg);
+}
+
+.form-feedback-error {
+  color: var(--error);
+  background-color: var(--error-bg);
+}
+
+.form-feedback-icon {
+  flex-shrink: 0;
+  font-size: var(--font-size-md);
+}
+
+.form-feedback-message {
+  flex: 1;
+}
+
+/* ===== Status Indicators ===== */
+.status-indicator {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-medium);
+  padding: var(--space-1) var(--space-3);
+  border-radius: var(--border-radius-full);
+  animation: status-appear var(--animation-duration-normal) var(--animation-easing-standard) forwards;
+  opacity: 0;
+}
+
+@keyframes status-appear {
+  from {
+    opacity: 0;
+    transform: scale(0.9);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+.status-success {
+  background-color: var(--success-bg);
+  color: var(--success);
+}
+
+.status-error {
+  background-color: var(--error-bg);
+  color: var(--error);
+}
+
+.status-warning {
+  background-color: var(--warning-bg);
+  color: var(--warning);
+}
+
+.status-info {
+  background-color: var(--info-bg);
+  color: var(--info);
+}
+
+.status-indicator-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background-color: currentColor;
+  position: relative;
+}
+
+.status-indicator-dot::after {
+  content: '';
+  position: absolute;
+  top: -2px;
+  left: -2px;
+  right: -2px;
+  bottom: -2px;
+  border-radius: 50%;
+  background-color: currentColor;
+  opacity: 0.3;
+  animation: pulse 1.5s ease-in-out infinite;
+}
+
+@keyframes pulse {
+  0% { transform: scale(1); opacity: 0.3; }
+  50% { transform: scale(1.5); opacity: 0; }
+  100% { transform: scale(1); opacity: 0.3; }
+}
+
+/* ===== Modal Alerts ===== */
+.modal-alert-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: var(--overlay);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  opacity: 0;
+  animation: overlay-appear var(--animation-duration-normal) var(--animation-easing-standard) forwards;
+}
+
+@keyframes overlay-appear {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+.modal-alert {
+  background-color: var(--card-background);
+  border-radius: var(--border-radius-lg);
+  box-shadow: var(--shadow-xl);
+  width: 90%;
+  max-width: 400px;
+  padding: var(--space-6);
+  transform: scale(0.9);
+  opacity: 0;
+  animation: modal-appear var(--animation-duration-normal) var(--animation-easing-decelerate) 0.1s forwards;
+}
+
+@keyframes modal-appear {
+  from {
+    opacity: 0;
+    transform: scale(0.9);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+.modal-alert-icon {
+  width: 64px;
+  height: 64px;
+  margin: 0 auto var(--space-4);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  font-size: 32px;
+}
+
+.modal-alert-success .modal-alert-icon {
+  background-color: var(--success-bg);
+  color: var(--success);
+}
+
+.modal-alert-error .modal-alert-icon {
+  background-color: var(--error-bg);
+  color: var(--error);
+}
+
+.modal-alert-warning .modal-alert-icon {
+  background-color: var(--warning-bg);
+  color: var(--warning);
+}
+
+.modal-alert-title {
+  font-size: var(--font-size-xl);
+  font-weight: var(--font-weight-bold);
+  text-align: center;
+  margin-bottom: var(--space-3);
+}
+
+.modal-alert-message {
+  text-align: center;
+  margin-bottom: var(--space-6);
+  color: var(--text-secondary);
+}
+
+.modal-alert-actions {
+  display: flex;
+  justify-content: center;
+  gap: var(--space-3);
+}
+
+/* ===== Form Validation States ===== */
+.form-control.is-valid {
+  border-color: var(--success);
+  background-color: var(--success-bg);
+  animation: valid-pulse var(--animation-duration-normal) var(--animation-easing-standard);
+}
+
+@keyframes valid-pulse {
+  0% { box-shadow: 0 0 0 0 rgba(16, 185, 129, 0.4); }
+  70% { box-shadow: 0 0 0 6px rgba(16, 185, 129, 0); }
+  100% { box-shadow: 0 0 0 0 rgba(16, 185, 129, 0); }
+}
+
+.form-control.is-invalid {
+  border-color: var(--error);
+  background-color: var(--error-bg);
+  animation: invalid-shake var(--animation-duration-normal) cubic-bezier(.36,.07,.19,.97) both;
+}
+
+@keyframes invalid-shake {
+  0%, 100% { transform: translateX(0); }
+  10%, 30%, 50%, 70%, 90% { transform: translateX(-2px); }
+  20%, 40%, 60%, 80% { transform: translateX(2px); }
+}
+
+/* ===== Accessibility Considerations ===== */
+@media (prefers-reduced-motion: reduce) {
+  .alert,
+  .toast,
+  .form-feedback,
+  .status-indicator,
+  .modal-alert,
+  .modal-alert-overlay,
+  .form-control.is-valid,
+  .form-control.is-invalid {
+    animation: none !important;
+    transition: none !important;
+  }
+  
+  .status-indicator-dot::after {
+    animation: none !important;
+  }
+}
+
+/* High contrast mode support */
+@media (forced-colors: active) {
+  .alert,
+  .toast,
+  .form-feedback,
+  .status-indicator {
+    border: 2px solid currentColor;
+  }
+  
+  .alert::before {
+    background-color: currentColor;
+  }
+}

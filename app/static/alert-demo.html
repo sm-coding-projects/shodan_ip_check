@@ -1,0 +1,486 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="color-scheme" content="light dark">
+  <meta name="theme-color" media="(prefers-color-scheme: light)" content="#3b82f6">
+  <meta name="theme-color" media="(prefers-color-scheme: dark)" content="#1e293b">
+  <title>Shodan IP Inspector - Alert States Demo</title>
+  <link rel="stylesheet" href="/static/style.css">
+  <link rel="stylesheet" href="/static/card-components.css">
+  <link rel="stylesheet" href="/static/loading-states.css">
+  <link rel="stylesheet" href="/static/micro-interactions.css">
+  <link rel="stylesheet" href="/static/alert-states.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+  <header class="modern-header">
+    <div class="container header-container">
+      <div class="logo-container">
+        <div class="logo-icon">
+          <i class="fas fa-shield-alt"></i>
+        </div>
+        <h1 class="logo-text">Shodan <span class="logo-highlight">IP Inspector</span></h1>
+      </div>
+      <nav class="header-nav">
+        <ul class="nav-list">
+          <li class="nav-item active"><a href="#" class="nav-link"><i class="fas fa-search"></i><span>Lookup</span></a></li>
+          <li class="nav-item"><a href="#" class="nav-link"><i class="fas fa-info-circle"></i><span>About</span></a></li>
+          <li class="nav-item"><a href="https://www.shodan.io" target="_blank" rel="noopener" class="nav-link"><i class="fas fa-external-link-alt"></i><span>Shodan</span></a></li>
+        </ul>
+      </nav>
+      <div class="theme-controls">
+        <span class="theme-label">Theme</span>
+        <button id="theme-toggle" class="theme-toggle" aria-label="Toggle theme">
+          <span class="theme-toggle-track">
+            <span class="theme-toggle-thumb"></span>
+          </span>
+          <i class="fas fa-moon"></i>
+          <i class="fas fa-sun"></i>
+        </button>
+        <button class="mobile-menu-toggle" aria-label="Toggle mobile menu">
+          <i class="fas fa-bars"></i>
+        </button>
+      </div>
+    </div>
+  </header>
+  
+  <div class="mobile-nav">
+    <ul class="mobile-nav-list">
+      <li class="mobile-nav-item active"><a href="#" class="mobile-nav-link"><i class="fas fa-search"></i>Lookup</a></li>
+      <li class="mobile-nav-item"><a href="#" class="mobile-nav-link"><i class="fas fa-info-circle"></i>About</a></li>
+      <li class="mobile-nav-item"><a href="https://www.shodan.io" target="_blank" rel="noopener" class="mobile-nav-link"><i class="fas fa-external-link-alt"></i>Shodan</a></li>
+    </ul>
+  </div>
+
+  <main>
+    <div class="container">
+      <div class="form-container">
+        <h2 class="form-title">Alert States Demo</h2>
+        <p>This page demonstrates the modern alert and notification components for the Shodan IP Inspector application.</p>
+        
+        <style>
+          .demo-controls {
+            margin-top: 2rem;
+          }
+          
+          .demo-section {
+            margin-bottom: 2rem;
+            padding: 1.5rem;
+            border-radius: var(--border-radius-md);
+            background-color: var(--surface);
+            border: 1px solid var(--border);
+          }
+          
+          .demo-section h3 {
+            margin-top: 0;
+            margin-bottom: 1rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 1px solid var(--border);
+          }
+          
+          .demo-buttons {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.75rem;
+            margin-bottom: 1rem;
+          }
+          
+          .status-container {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+            margin-top: 1rem;
+          }
+          
+          .status-buttons {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.75rem;
+            margin-bottom: 1rem;
+          }
+          
+          .alert-demo-container {
+            margin-top: 2rem;
+            padding: 1.5rem;
+            border-radius: var(--border-radius-md);
+            background-color: var(--surface);
+            border: 1px solid var(--border);
+            min-height: 200px;
+          }
+        </style>
+        
+        <div class="demo-controls">
+          <div class="demo-section">
+            <h3>Inline Alerts</h3>
+            <div class="demo-buttons">
+              <button id="show-success-alert" class="btn btn-primary">Show Success Alert</button>
+              <button id="show-error-alert" class="btn btn-primary">Show Error Alert</button>
+              <button id="show-warning-alert" class="btn btn-primary">Show Warning Alert</button>
+              <button id="show-info-alert" class="btn btn-primary">Show Info Alert</button>
+            </div>
+          </div>
+          
+          <div class="demo-section">
+            <h3>Toast Notifications</h3>
+            <div class="demo-buttons">
+              <button id="show-success-toast" class="btn btn-primary">Show Success Toast</button>
+              <button id="show-error-toast" class="btn btn-primary">Show Error Toast</button>
+              <button id="show-warning-toast" class="btn btn-primary">Show Warning Toast</button>
+              <button id="show-info-toast" class="btn btn-primary">Show Info Toast</button>
+            </div>
+          </div>
+          
+          <div class="demo-section">
+            <h3>Modal Alerts</h3>
+            <div class="demo-buttons">
+              <button id="show-success-modal" class="btn btn-primary">Show Success Modal</button>
+              <button id="show-error-modal" class="btn btn-primary">Show Error Modal</button>
+              <button id="show-warning-modal" class="btn btn-primary">Show Warning Modal</button>
+              <button id="show-info-modal" class="btn btn-primary">Show Info Modal</button>
+            </div>
+          </div>
+          
+          <div class="demo-section">
+            <h3>Form Feedback</h3>
+            <div class="form-group">
+              <input type="text" id="demo-input" class="form-control" placeholder="Enter some text">
+              <label for="demo-input" class="form-label">Demo Input</label>
+            </div>
+            <div class="demo-buttons">
+              <button id="show-success-feedback" class="btn btn-primary">Show Success Feedback</button>
+              <button id="show-error-feedback" class="btn btn-primary">Show Error Feedback</button>
+            </div>
+          </div>
+          
+          <div class="demo-section">
+            <h3>Status Indicators</h3>
+            <div class="status-buttons">
+              <button id="show-success-status" class="btn btn-primary">Show Success Status</button>
+              <button id="show-error-status" class="btn btn-primary">Show Error Status</button>
+              <button id="show-warning-status" class="btn btn-primary">Show Warning Status</button>
+              <button id="show-info-status" class="btn btn-primary">Show Info Status</button>
+            </div>
+            <div id="status-container" class="status-container"></div>
+          </div>
+        </div>
+      </div>
+      
+      <div id="alert-container" class="alert-demo-container">
+        <h3>Alert Container</h3>
+        <p>Alerts will appear here</p>
+      </div>
+    </div>
+  </main>
+
+  <footer>
+    <div class="container">
+      <div class="footer-content">
+        <p>Powered by <a href="https://www.shodan.io" target="_blank" rel="noopener">Shodan</a> | 
+           <i class="fas fa-shield-alt"></i> Secure IP Intelligence</p>
+        
+        <div class="theme-preferences">
+          <span class="theme-pref-label">Theme preference:</span>
+          <div class="theme-pref-options">
+            <button class="theme-pref-btn" data-theme-pref="light">
+              <i class="fas fa-sun"></i> Light
+            </button>
+            <button class="theme-pref-btn" data-theme-pref="dark">
+              <i class="fas fa-moon"></i> Dark
+            </button>
+            <button class="theme-pref-btn" data-theme-pref="system">
+              <i class="fas fa-desktop"></i> System
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="/static/alert-manager.js"></script>
+  <script src="/static/script.js"></script>
+  <script>
+    // Demo script for alert states
+    document.addEventListener('DOMContentLoaded', () => {
+      // Alert container
+      const alertContainer = document.getElementById('alert-container');
+      const demoInput = document.getElementById('demo-input');
+      const statusContainer = document.getElementById('status-container');
+      
+      // Inline Alerts
+      document.getElementById('show-success-alert').addEventListener('click', () => {
+        AlertStateManager.show({
+          type: AlertStateManager.types.SUCCESS,
+          title: 'Operation Successful',
+          message: 'Your request has been processed successfully.',
+          container: alertContainer,
+          dismissible: true,
+          animation: true
+        });
+      });
+      
+      document.getElementById('show-error-alert').addEventListener('click', () => {
+        AlertStateManager.show({
+          type: AlertStateManager.types.ERROR,
+          title: 'Error Occurred',
+          message: 'There was a problem processing your request. Please try again.',
+          container: alertContainer,
+          dismissible: true,
+          animation: true
+        });
+      });
+      
+      document.getElementById('show-warning-alert').addEventListener('click', () => {
+        AlertStateManager.show({
+          type: AlertStateManager.types.WARNING,
+          title: 'Warning',
+          message: 'This action may take a while to complete.',
+          container: alertContainer,
+          dismissible: true,
+          animation: true
+        });
+      });
+      
+      document.getElementById('show-info-alert').addEventListener('click', () => {
+        AlertStateManager.show({
+          type: AlertStateManager.types.INFO,
+          title: 'Information',
+          message: 'Your session will expire in 10 minutes.',
+          container: alertContainer,
+          dismissible: true,
+          animation: true
+        });
+      });
+      
+      // Toast Notifications
+      document.getElementById('show-success-toast').addEventListener('click', () => {
+        AlertStateManager.toast({
+          type: AlertStateManager.types.SUCCESS,
+          title: 'Success Toast',
+          message: 'Operation completed successfully.',
+          position: AlertStateManager.positions.TOP_RIGHT,
+          autoClose: true
+        });
+      });
+      
+      document.getElementById('show-error-toast').addEventListener('click', () => {
+        AlertStateManager.toast({
+          type: AlertStateManager.types.ERROR,
+          title: 'Error Toast',
+          message: 'Failed to complete operation.',
+          position: AlertStateManager.positions.TOP_RIGHT,
+          autoClose: true
+        });
+      });
+      
+      document.getElementById('show-warning-toast').addEventListener('click', () => {
+        AlertStateManager.toast({
+          type: AlertStateManager.types.WARNING,
+          title: 'Warning Toast',
+          message: 'This action may have consequences.',
+          position: AlertStateManager.positions.TOP_RIGHT,
+          autoClose: true
+        });
+      });
+      
+      document.getElementById('show-info-toast').addEventListener('click', () => {
+        AlertStateManager.toast({
+          type: AlertStateManager.types.INFO,
+          title: 'Info Toast',
+          message: 'Here is some information you might find useful.',
+          position: AlertStateManager.positions.TOP_RIGHT,
+          autoClose: true
+        });
+      });
+      
+      // Modal Alerts
+      document.getElementById('show-success-modal').addEventListener('click', () => {
+        AlertStateManager.modal({
+          type: AlertStateManager.types.SUCCESS,
+          title: 'Success',
+          message: 'Operation completed successfully.',
+          confirmText: 'OK',
+          onConfirm: () => {
+            AlertStateManager.toast({
+              type: AlertStateManager.types.SUCCESS,
+              title: 'Modal Closed',
+              message: 'You closed the success modal.',
+              position: AlertStateManager.positions.TOP_RIGHT,
+              autoClose: true
+            });
+          }
+        });
+      });
+      
+      document.getElementById('show-error-modal').addEventListener('click', () => {
+        AlertStateManager.modal({
+          type: AlertStateManager.types.ERROR,
+          title: 'Error',
+          message: 'An error occurred while processing your request.',
+          confirmText: 'OK',
+          cancelText: 'Retry',
+          onConfirm: () => {
+            AlertStateManager.toast({
+              type: AlertStateManager.types.INFO,
+              title: 'Modal Confirmed',
+              message: 'You acknowledged the error.',
+              position: AlertStateManager.positions.TOP_RIGHT,
+              autoClose: true
+            });
+          },
+          onCancel: () => {
+            AlertStateManager.toast({
+              type: AlertStateManager.types.INFO,
+              title: 'Retrying',
+              message: 'Attempting to retry the operation.',
+              position: AlertStateManager.positions.TOP_RIGHT,
+              autoClose: true
+            });
+          }
+        });
+      });
+      
+      document.getElementById('show-warning-modal').addEventListener('click', () => {
+        AlertStateManager.modal({
+          type: AlertStateManager.types.WARNING,
+          title: 'Warning',
+          message: 'This action cannot be undone. Are you sure you want to proceed?',
+          confirmText: 'Yes, Proceed',
+          cancelText: 'Cancel',
+          onConfirm: () => {
+            AlertStateManager.toast({
+              type: AlertStateManager.types.SUCCESS,
+              title: 'Action Confirmed',
+              message: 'You confirmed the action.',
+              position: AlertStateManager.positions.TOP_RIGHT,
+              autoClose: true
+            });
+          },
+          onCancel: () => {
+            AlertStateManager.toast({
+              type: AlertStateManager.types.INFO,
+              title: 'Action Cancelled',
+              message: 'You cancelled the action.',
+              position: AlertStateManager.positions.TOP_RIGHT,
+              autoClose: true
+            });
+          }
+        });
+      });
+      
+      document.getElementById('show-info-modal').addEventListener('click', () => {
+        AlertStateManager.modal({
+          type: AlertStateManager.types.INFO,
+          title: 'Information',
+          message: 'This feature will be available in the next update.',
+          confirmText: 'Got it',
+          onConfirm: () => {
+            AlertStateManager.toast({
+              type: AlertStateManager.types.INFO,
+              title: 'Acknowledged',
+              message: 'You acknowledged the information.',
+              position: AlertStateManager.positions.TOP_RIGHT,
+              autoClose: true
+            });
+          }
+        });
+      });
+      
+      // Form Feedback
+      document.getElementById('show-success-feedback').addEventListener('click', () => {
+        const formGroup = demoInput.closest('.form-group');
+        demoInput.classList.add('is-valid');
+        demoInput.classList.remove('is-invalid');
+        
+        // Remove any existing feedback
+        const existingFeedback = formGroup.querySelector('.form-feedback');
+        if (existingFeedback) {
+          formGroup.removeChild(existingFeedback);
+        }
+        
+        AlertStateManager.formFeedback({
+          type: AlertStateManager.types.SUCCESS,
+          message: 'Input is valid!',
+          container: formGroup,
+          autoClose: true,
+          autoCloseDelay: 3000
+        });
+      });
+      
+      document.getElementById('show-error-feedback').addEventListener('click', () => {
+        const formGroup = demoInput.closest('.form-group');
+        demoInput.classList.add('is-invalid');
+        demoInput.classList.remove('is-valid');
+        
+        // Remove any existing feedback
+        const existingFeedback = formGroup.querySelector('.form-feedback');
+        if (existingFeedback) {
+          formGroup.removeChild(existingFeedback);
+        }
+        
+        AlertStateManager.formFeedback({
+          type: AlertStateManager.types.ERROR,
+          message: 'Please enter a valid value.',
+          container: formGroup,
+          autoClose: true,
+          autoCloseDelay: 3000
+        });
+      });
+      
+      // Status Indicators
+      document.getElementById('show-success-status').addEventListener('click', () => {
+        // Clear existing status indicators
+        clearStatusIndicators();
+        
+        AlertStateManager.statusIndicator({
+          type: AlertStateManager.types.SUCCESS,
+          message: 'Operation successful',
+          container: statusContainer
+        });
+      });
+      
+      document.getElementById('show-error-status').addEventListener('click', () => {
+        // Clear existing status indicators
+        clearStatusIndicators();
+        
+        AlertStateManager.statusIndicator({
+          type: AlertStateManager.types.ERROR,
+          message: 'Operation failed',
+          container: statusContainer
+        });
+      });
+      
+      document.getElementById('show-warning-status').addEventListener('click', () => {
+        // Clear existing status indicators
+        clearStatusIndicators();
+        
+        AlertStateManager.statusIndicator({
+          type: AlertStateManager.types.WARNING,
+          message: 'Proceed with caution',
+          container: statusContainer
+        });
+      });
+      
+      document.getElementById('show-info-status').addEventListener('click', () => {
+        // Clear existing status indicators
+        clearStatusIndicators();
+        
+        AlertStateManager.statusIndicator({
+          type: AlertStateManager.types.INFO,
+          message: 'System is processing',
+          container: statusContainer
+        });
+      });
+      
+      // Helper function to clear status indicators
+      function clearStatusIndicators() {
+        const indicators = statusContainer.querySelectorAll('.status-indicator');
+        indicators.forEach(indicator => {
+          statusContainer.removeChild(indicator);
+        });
+      }
+    });
+  </script>
+</body>
+</html>

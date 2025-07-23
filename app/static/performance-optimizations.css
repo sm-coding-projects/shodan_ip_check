@@ -1,0 +1,199 @@
+/* Performance Optimizations for CSS
+ * This file contains optimizations to improve CSS performance and reduce bundle size
+ */
+
+/* Optimize CSS Variables */
+:root {
+  /* Reduce redundant CSS variables and optimize for performance */
+  --shadow-color-light: 220 3% 15%;
+  --shadow-color-dark: 220 40% 2%;
+  --shadow-strength-light: 1%;
+  --shadow-strength-dark: 25%;
+}
+
+/* Optimize Animations for Performance */
+@media screen and (min-width: 768px) {
+  /* Only apply complex animations on non-mobile devices */
+  .theme-toggle:hover i {
+    transform: rotate(15deg) scale(1.1);
+  }
+  
+  .form-container:hover {
+    transform: translateY(-3px) translateZ(0);
+  }
+  
+  .card:hover {
+    transform: translateY(-2px);
+  }
+}
+
+/* Optimize Paint and Layout Operations */
+.card,
+.form-container,
+.btn,
+.theme-toggle {
+  /* Use transform and opacity for animations as they don't trigger layout */
+  will-change: transform, opacity;
+  /* Hardware acceleration for smoother animations */
+  transform: translateZ(0);
+}
+
+/* Optimize Transitions */
+.theme-transition-target {
+  /* Only transition specific properties instead of 'all' */
+  transition-property: color, background-color, border-color, box-shadow;
+}
+
+/* Reduced Motion Support */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    /* Disable animations for users who prefer reduced motion */
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+  
+  /* Replace animations with subtle transitions */
+  .theme-toggle-animation,
+  .skeleton-loader::after,
+  .progress-indeterminate .progress-bar,
+  .circular-progress,
+  .spinner,
+  .pulse,
+  .loading-dots span,
+  .btn-loading::after,
+  .form-loading::after {
+    animation: none !important;
+  }
+  
+  /* Provide alternative visual feedback */
+  .theme-toggle:hover {
+    opacity: 0.8;
+  }
+  
+  .btn:hover {
+    opacity: 0.9;
+  }
+  
+  /* Disable transform animations */
+  .card:hover,
+  .form-container:hover,
+  .btn:hover,
+  .theme-toggle:hover {
+    transform: none !important;
+  }
+  
+  /* Disable skeleton animations */
+  .skeleton-loader::after {
+    background-image: none;
+    background-color: rgba(127, 127, 127, 0.1);
+  }
+}
+
+/* Optimize Layout Rendering */
+.container,
+.grid,
+.flex,
+.card,
+.form-container {
+  /* Prevent layout thrashing by isolating elements */
+  contain: layout style paint;
+}
+
+/* Optimize Font Loading */
+@font-face {
+  font-family: system-ui;
+  font-style: normal;
+  font-weight: 300 900;
+  /* Use font-display: swap for better performance */
+  font-display: swap;
+}
+
+/* Optimize Box Shadows */
+.card,
+.form-container,
+.btn {
+  /* Use more performant box-shadow */
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+/* Fine-tune Spacing for Pixel-Perfect Design */
+.form-group {
+  margin-bottom: 1.25rem; /* Precise spacing */
+}
+
+.card {
+  padding: 1.5rem; /* Consistent padding */
+}
+
+/* Optimize Background Gradients */
+.modern-header,
+.btn-primary {
+  /* Simplify gradients for better performance */
+  background: var(--primary);
+}
+
+/* High-performance alternative for hover states */
+@media (hover: hover) {
+  .modern-header:hover::before {
+    opacity: 1;
+  }
+}
+
+/* Optimize CSS Selectors */
+/* Use direct child selectors where possible */
+.form-row > * {
+  margin-bottom: 0;
+}
+
+/* Avoid descendant selectors when possible */
+.card-title {
+  margin-bottom: 1rem;
+}
+
+/* Optimize Media Queries */
+/* Consolidate media queries */
+@media (min-width: 768px) {
+  .header-nav {
+    display: block;
+  }
+  
+  .mobile-menu-toggle {
+    display: none;
+  }
+  
+  .theme-label {
+    display: block;
+  }
+  
+  .form-row {
+    grid-template-columns: 1fr 1fr;
+  }
+  
+  .skeleton-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+/* Optimize for Print */
+@media print {
+  .theme-toggle,
+  .mobile-menu-toggle,
+  .btn {
+    display: none !important;
+  }
+  
+  body {
+    background: white !important;
+    color: black !important;
+  }
+  
+  .card,
+  .form-container {
+    box-shadow: none !important;
+    border: 1px solid #ddd !important;
+  }
+}

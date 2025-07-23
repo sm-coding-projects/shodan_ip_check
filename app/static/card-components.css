@@ -1,0 +1,495 @@
+/* Modern Card Components for Shodan IP Lookup
+ * This file contains styles for the modern card-based results display
+ */
+
+/* Base Card Styles */
+.card {
+  background-color: var(--card-background);
+  border-radius: var(--border-radius-lg);
+  padding: var(--space-6);
+  box-shadow: var(--shadow);
+  transition: transform var(--transition-normal) var(--easing-standard),
+              box-shadow var(--transition-normal) var(--easing-standard),
+              background-color var(--transition-normal) var(--easing-standard);
+  border: 1px solid var(--border-light);
+  position: relative;
+  overflow: hidden;
+  margin-bottom: var(--space-6);
+}
+
+.card:hover {
+  transform: translateY(-3px);
+  box-shadow: var(--shadow-md);
+}
+
+.card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  opacity: 0.8;
+  transition: opacity var(--transition-normal) var(--easing-standard),
+              transform var(--transition-normal) var(--easing-standard);
+}
+
+.card:hover::before {
+  opacity: 1;
+  transform: scaleX(1.03);
+}
+
+/* Card Header */
+.card-header {
+  display: flex;
+  align-items: center;
+  margin-bottom: var(--space-4);
+  padding-bottom: var(--space-3);
+  border-bottom: 1px solid var(--border);
+}
+
+.card-title {
+  font-size: var(--font-size-xl);
+  font-weight: var(--font-weight-bold);
+  color: var(--text);
+  margin: 0;
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  letter-spacing: var(--letter-spacing-tight);
+}
+
+.card-title i {
+  color: var(--primary);
+  font-size: 0.9em;
+}
+
+/* Card Body */
+.card-body {
+  padding: var(--space-2) 0;
+}
+
+/* Card Footer */
+.card-footer {
+  margin-top: var(--space-4);
+  padding-top: var(--space-3);
+  border-top: 1px solid var(--border);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+/* Data Groups */
+.data-group {
+  margin-bottom: var(--space-4);
+  position: relative;
+}
+
+.data-group:last-child {
+  margin-bottom: 0;
+}
+
+.data-label {
+  display: block;
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-medium);
+  color: var(--text-secondary);
+  margin-bottom: var(--space-1);
+  letter-spacing: var(--letter-spacing-wide);
+  text-transform: uppercase;
+}
+
+.data-value {
+  font-size: var(--font-size-md);
+  color: var(--text);
+  font-weight: var(--font-weight-medium);
+  line-height: var(--line-height-snug);
+  position: relative;
+  padding: var(--space-2) 0;
+}
+
+.data-value.empty {
+  color: var(--text-muted);
+  font-style: italic;
+}
+
+/* Code Text */
+.code-text {
+  font-family: var(--font-family-mono);
+  background-color: var(--surface);
+  padding: var(--space-1) var(--space-2);
+  border-radius: var(--border-radius-sm);
+  font-size: var(--font-size-sm);
+  color: var(--primary);
+  display: inline-block;
+  margin-right: var(--space-1);
+  margin-bottom: var(--space-1);
+  border: 1px solid var(--border-light);
+}
+
+/* Card Types */
+/* Summary Card */
+.card-summary::before {
+  background: var(--primary-gradient);
+}
+
+.card-summary .card-title i {
+  color: var(--primary);
+}
+
+.card-summary .data-grid {
+  display: grid;
+  gap: var(--space-4);
+}
+
+@media (min-width: 768px) {
+  .card-summary .data-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+/* Vulnerability Card */
+.card-vulnerability::before {
+  background: linear-gradient(to right, var(--error), var(--warning));
+}
+
+.card-vulnerability .card-title i {
+  color: var(--error);
+}
+
+.severity-high,
+.severity-medium,
+.severity-low {
+  display: flex;
+  align-items: center;
+  padding: var(--space-2) var(--space-3);
+  border-radius: var(--border-radius-md);
+  margin-bottom: var(--space-2);
+  font-weight: var(--font-weight-medium);
+  position: relative;
+  padding-left: var(--space-8);
+}
+
+.severity-high::before,
+.severity-medium::before,
+.severity-low::before {
+  content: '';
+  position: absolute;
+  left: var(--space-3);
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+}
+
+.severity-high {
+  background-color: var(--error-bg);
+  color: var(--error);
+}
+
+.severity-high::before {
+  background-color: var(--error);
+  box-shadow: 0 0 8px var(--error);
+}
+
+.severity-medium {
+  background-color: var(--warning-bg);
+  color: var(--warning);
+}
+
+.severity-medium::before {
+  background-color: var(--warning);
+  box-shadow: 0 0 8px var(--warning);
+}
+
+.severity-low {
+  background-color: var(--info-bg);
+  color: var(--info);
+}
+
+.severity-low::before {
+  background-color: var(--info);
+  box-shadow: 0 0 8px var(--info);
+}
+
+/* Service Card */
+.card-service::before {
+  background: linear-gradient(to right, var(--info), var(--primary));
+}
+
+.card-service .card-title i {
+  color: var(--info);
+}
+
+.card-service h3 {
+  font-size: var(--font-size-lg);
+  font-weight: var(--font-weight-semibold);
+  color: var(--text);
+  margin: var(--space-4) 0 var(--space-2) 0;
+  padding-bottom: var(--space-1);
+  border-bottom: 1px dashed var(--border);
+}
+
+.card-service h3:first-of-type {
+  margin-top: 0;
+}
+
+.service-item {
+  display: flex;
+  align-items: center;
+  padding: var(--space-2) 0;
+  border-bottom: 1px solid var(--border-light);
+}
+
+.service-item:last-child {
+  border-bottom: none;
+}
+
+.service-port {
+  font-family: var(--font-family-mono);
+  background-color: var(--surface);
+  padding: var(--space-1) var(--space-2);
+  border-radius: var(--border-radius-sm);
+  font-size: var(--font-size-sm);
+  color: var(--primary);
+  margin-right: var(--space-3);
+  border: 1px solid var(--border-light);
+  min-width: 80px;
+  text-align: center;
+}
+
+.service-details {
+  flex: 1;
+}
+
+.service-name {
+  font-weight: var(--font-weight-medium);
+  color: var(--text);
+}
+
+.service-version {
+  font-size: var(--font-size-sm);
+  color: var(--text-secondary);
+}
+
+/* Error Card */
+.card-error::before {
+  background: linear-gradient(to right, var(--error), var(--error-light));
+}
+
+.card-error .card-title i {
+  color: var(--error);
+}
+
+.card-error .card-body {
+  color: var(--error);
+}
+
+/* Results Container Layout */
+.results-container {
+  display: grid;
+  gap: var(--space-6);
+  grid-template-columns: 1fr;
+}
+
+@media (min-width: 768px) {
+  .results-container {
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  }
+  
+  .card-summary {
+    grid-column: 1 / -1;
+  }
+}
+
+@media (min-width: 1024px) {
+  .results-container {
+    grid-template-columns: repeat(3, 1fr);
+  }
+  
+  .card-summary {
+    grid-column: 1 / -1;
+  }
+}
+
+/* Card Animation */
+@keyframes cardAppear {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.card {
+  animation: cardAppear 0.5s var(--easing-standard) forwards;
+}
+
+.card:nth-child(2) {
+  animation-delay: 0.1s;
+}
+
+.card:nth-child(3) {
+  animation-delay: 0.2s;
+}
+
+.card:nth-child(4) {
+  animation-delay: 0.3s;
+}
+
+/* Empty State */
+.empty-state {
+  text-align: center;
+  padding: var(--space-8) var(--space-4);
+  color: var(--text-secondary);
+}
+
+.empty-state i {
+  font-size: var(--font-size-4xl);
+  margin-bottom: var(--space-4);
+  opacity: 0.5;
+}
+
+.empty-state h3 {
+  font-size: var(--font-size-xl);
+  margin-bottom: var(--space-2);
+  font-weight: var(--font-weight-medium);
+}
+
+.empty-state p {
+  max-width: 500px;
+  margin: 0 auto;
+}/* Skelet
+on Loading States */
+@keyframes shimmer {
+  0% {
+    background-position: -468px 0;
+  }
+  100% {
+    background-position: 468px 0;
+  }
+}
+
+.skeleton {
+  position: relative;
+}
+
+.skeleton::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    90deg,
+    rgba(255, 255, 255, 0) 0,
+    rgba(255, 255, 255, 0.2) 20%,
+    rgba(255, 255, 255, 0.5) 60%,
+    rgba(255, 255, 255, 0)
+  );
+  animation: shimmer 2s infinite linear;
+  transform: translateZ(0);
+}
+
+[data-theme="dark"] .skeleton::after {
+  background: linear-gradient(
+    90deg,
+    rgba(255, 255, 255, 0) 0,
+    rgba(255, 255, 255, 0.05) 20%,
+    rgba(255, 255, 255, 0.1) 60%,
+    rgba(255, 255, 255, 0)
+  );
+}
+
+.skeleton-title {
+  height: 24px;
+  width: 180px;
+  background-color: var(--surface);
+  border-radius: var(--border-radius-md);
+  margin-bottom: var(--space-2);
+}
+
+.skeleton-label {
+  height: 16px;
+  width: 80px;
+  background-color: var(--surface);
+  border-radius: var(--border-radius-md);
+  margin-bottom: var(--space-2);
+}
+
+.skeleton-value {
+  height: 20px;
+  width: 100%;
+  background-color: var(--surface);
+  border-radius: var(--border-radius-md);
+}
+
+.skeleton-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2);
+}
+
+.skeleton-chips::before,
+.skeleton-chips::after {
+  content: '';
+  height: 24px;
+  width: 60px;
+  background-color: var(--surface);
+  border-radius: var(--border-radius-md);
+}
+
+.skeleton-chips::after {
+  width: 80px;
+}
+
+.skeleton-list {
+  height: 24px;
+  width: 100%;
+  background-color: var(--surface);
+  border-radius: var(--border-radius-md);
+  margin-bottom: var(--space-3);
+}
+
+.skeleton-list:nth-child(2) {
+  width: 85%;
+}
+
+.skeleton-list:nth-child(3) {
+  width: 70%;
+}
+
+/* Empty State */
+.empty-results {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: var(--space-8);
+  text-align: center;
+  background-color: var(--card-background);
+  border-radius: var(--border-radius-lg);
+  box-shadow: var(--shadow);
+  border: 1px solid var(--border-light);
+}
+
+.empty-results i {
+  font-size: var(--font-size-4xl);
+  color: var(--text-secondary);
+  margin-bottom: var(--space-4);
+  opacity: 0.5;
+}
+
+.empty-results h3 {
+  font-size: var(--font-size-xl);
+  color: var(--text);
+  margin-bottom: var(--space-2);
+}
+
+.empty-results p {
+  color: var(--text-secondary);
+  max-width: 400px;
+}

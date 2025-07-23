@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover, maximum-scale=1.0, user-scalable=yes">
+  <meta name="color-scheme" content="light dark">
+  <meta name="theme-color" media="(prefers-color-scheme: light)" content="#3b82f6">
+  <meta name="theme-color" media="(prefers-color-scheme: dark)" content="#1e293b">
+  <title>Responsive Layout Test - Shodan IP Inspector</title>
+  <link rel="stylesheet" href="/static/style.css">
+  <link rel="stylesheet" href="/static/card-components.css">
+  <link rel="stylesheet" href="/static/loading-states.css">
+  <link rel="stylesheet" href="/static/micro-interactions.css">
+  <link rel="stylesheet" href="/static/alert-states.css">
+  <link rel="stylesheet" href="/static/responsive-layout.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+    .device-info {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      background-color: var(--primary);
+      color: white;
+      padding: 10px 15px;
+      border-radius: 8px;
+      font-size: 14px;
+      z-index: 1000;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    }
+    
+    .breakpoint-indicator {
+      display: none;
+    }
+    
+    /* Show different indicators based on screen size */
+    .breakpoint-xs { display: block; }
+    
+    @media (min-width: 576px) {
+      .breakpoint-xs { display: none; }
+      .breakpoint-sm { display: block; }
+    }
+    
+    @media (min-width: 768px) {
+      .breakpoint-sm { display: none; }
+      .breakpoint-md { display: block; }
+    }
+    
+    @media (min-width: 992px) {
+      .breakpoint-md { display: none; }
+      .breakpoint-lg { display: block; }
+    }
+    
+    @media (min-width: 1200px) {
+      .breakpoint-lg { display: none; }
+      .breakpoint-xl { display: block; }
+    }
+    
+    @media (min-width: 1400px) {
+      .breakpoint-xl { display: none; }
+      .breakpoint-xxl { display: block; }
+    }
+    
+    .test-section {
+      margin-bottom: 2rem;
+      padding: 1rem;
+      border: 1px solid var(--border);
+      border-radius: var(--border-radius-lg);
+    }
+    
+    .test-grid {
+      display: grid;
+      gap: 1rem;
+      grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+    }
+    
+    .test-item {
+      background-color: var(--primary-100);
+      color: var(--primary-900);
+      padding: 1rem;
+      border-radius: var(--border-radius-md);
+      text-align: center;
+    }
+    
+    [data-theme="dark"] .test-item {
+      background-color: var(--primary-900);
+      color: var(--primary-100);
+    }
+  </style>
+</head>
+<body>
+  <header class="modern-header">
+    <div class="container header-container">
+      <div class="logo-container">
+        <div class="logo-icon">
+          <i class="fas fa-shield-alt"></i>
+        </div>
+        <h1 class="logo-text">Shodan <span class="logo-highlight">IP Inspector</span></h1>
+      </div>
+      <nav class="header-nav">
+        <ul class="nav-list">
+          <li class="nav-item active"><a href="#" class="nav-link"><i class="fas fa-search"></i><span>Lookup</span></a></li>
+          <li class="nav-item"><a href="#" class="nav-link"><i class="fas fa-info-circle"></i><span>About</span></a></li>
+          <li class="nav-item"><a href="https://www.shodan.io" target="_blank" rel="noopener" class="nav-link"><i class="fas fa-external-link-alt"></i><span>Shodan</span></a></li>
+        </ul>
+      </nav>
+      <div class="theme-controls">
+        <span class="theme-label">Theme</span>
+        <button id="theme-toggle" class="theme-toggle" aria-label="Toggle theme">
+          <span class="theme-toggle-track">
+            <span class="theme-toggle-thumb"></span>
+          </span>
+          <i class="fas fa-moon"></i>
+          <i class="fas fa-sun"></i>
+        </button>
+        <button class="mobile-menu-toggle" aria-label="Toggle mobile menu">
+          <i class="fas fa-bars"></i>
+        </button>
+      </div>
+    </div>
+  </header>
+  
+  <div class="mobile-nav">
+    <ul class="mobile-nav-list">
+      <li class="mobile-nav-item active"><a href="#" class="mobile-nav-link"><i class="fas fa-search"></i>Lookup</a></li>
+      <li class="mobile-nav-item"><a href="#" class="mobile-nav-link"><i class="fas fa-info-circle"></i>About</a></li>
+      <li class="mobile-nav-item"><a href="https://www.shodan.io" target="_blank" rel="noopener" class="mobile-nav-link"><i class="fas fa-external-link-alt"></i>Shodan</a></li>
+    </ul>
+  </div>
+
+  <main>
+    <div class="container">
+      <h1>Responsive Layout Test</h1>
+      <p>This page demonstrates the responsive layout system for the Shodan IP Inspector application.</p>
+      
+      <div class="test-section">
+        <h2>Current Breakpoint</h2>
+        <div class="breakpoint-indicator breakpoint-xs">Extra Small (xs): &lt; 576px</div>
+        <div class="breakpoint-indicator breakpoint-sm">Small (sm): ≥ 576px</div>
+        <div class="breakpoint-indicator breakpoint-md">Medium (md): ≥ 768px</div>
+        <div class="breakpoint-indicator breakpoint-lg">Large (lg): ≥ 992px</div>
+        <div class="breakpoint-indicator breakpoint-xl">Extra Large (xl): ≥ 1200px</div>
+        <div class="breakpoint-indicator breakpoint-xxl">Extra Extra Large (xxl): ≥ 1400px</div>
+      </div>
+      
+      <div class="form-container">
+        <h2 class="form-title">Form Layout Test</h2>
+        <form id="test-form">
+          <div class="form-row">
+            <div class="form-group">
+              <input type="text" id="field1" class="form-control" placeholder="Enter text" required>
+              <label for="field1" class="form-label">Field 1</label>
+            </div>
+            <div class="form-group">
+              <input type="text" id="field2" class="form-control" placeholder="Enter text" required>
+              <label for="field2" class="form-label">Field 2</label>
+            </div>
+          </div>
+          <button type="submit" class="btn btn-primary">
+            <i class="fas fa-check"></i> Submit
+          </button>
+        </form>
+      </div>
+      
+      <div class="test-section">
+        <h2>Card Grid Test</h2>
+        <div class="results-container">
+          <div class="card card-summary">
+            <div class="card-header">
+              <h2 class="card-title"><i class="fas fa-info-circle"></i> Summary Card</h2>
+            </div>
+            <div class="card-body">
+              <p>This card spans the full width on all screen sizes.</p>
+              <div class="data-grid">
+                <div class="data-group">
+                  <span class="data-label">Label 1</span>
+                  <div class="data-value">Value 1</div>
+                </div>
+                <div class="data-group">
+                  <span class="data-label">Label 2</span>
+                  <div class="data-value">Value 2</div>
+                </div>
+              </div>
+            </div>
+          </div>
+          
+          <div class="card card-vulnerability">
+            <div class="card-header">
+              <h2 class="card-title"><i class="fas fa-exclamation-triangle"></i> Card 1</h2>
+            </div>
+            <div class="card-body">
+              <p>This card adjusts its width based on screen size.</p>
+            </div>
+          </div>
+          
+          <div class="card card-service">
+            <div class="card-header">
+              <h2 class="card-title"><i class="fas fa-server"></i> Card 2</h2>
+            </div>
+            <div class="card-body">
+              <p>This card adjusts its width based on screen size.</p>
+            </div>
+          </div>
+          
+          <div class="card">
+            <div class="card-header">
+              <h2 class="card-title"><i class="fas fa-cog"></i> Card 3</h2>
+            </div>
+            <div class="card-body">
+              <p>This card adjusts its width based on screen size.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <div class="test-section">
+        <h2>Touch Target Test</h2>
+        <p>Test the size and spacing of touch targets:</p>
+        <div style="display: flex; flex-wrap: wrap; gap: 10px; margin-top: 1rem;">
+          <button class="btn btn-primary">Button 1</button>
+          <button class="btn btn-primary">Button 2</button>
+          <button class="btn btn-primary">Button 3</button>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <footer>
+    <div class="container">
+      <div class="footer-content">
+        <p>Powered by <a href="https://www.shodan.io" target="_blank" rel="noopener">Shodan</a> | 
+           <i class="fas fa-shield-alt"></i> Secure IP Intelligence</p>
+        
+        <div class="theme-preferences">
+          <span class="theme-pref-label">Theme preference:</span>
+          <div class="theme-pref-options">
+            <button class="theme-pref-btn" data-theme-pref="light">
+              <i class="fas fa-sun"></i> Light
+            </button>
+            <button class="theme-pref-btn" data-theme-pref="dark">
+              <i class="fas fa-moon"></i> Dark
+            </button>
+            <button class="theme-pref-btn" data-theme-pref="system">
+              <i class="fas fa-desktop"></i> System
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <div class="device-info">
+    <div id="screen-size"></div>
+    <div id="orientation"></div>
+    <div id="touch-device"></div>
+  </div>
+
+  <script src="/static/alert-manager.js"></script>
+  <script src="/static/script.js"></script>
+  <script>
+    // Device info display
+    function updateDeviceInfo() {
+      document.getElementById('screen-size').textContent = `Screen: ${window.innerWidth}px × ${window.innerHeight}px`;
+      document.getElementById('orientation').textContent = `Orientation: ${window.innerHeight > window.innerWidth ? 'Portrait' : 'Landscape'}`;
+      document.getElementById('touch-device').textContent = `Touch: ${('ontouchstart' in window) ? 'Yes' : 'No'}`;
+    }
+    
+    // Update on load and resize
+    window.addEventListener('load', updateDeviceInfo);
+    window.addEventListener('resize', updateDeviceInfo);
+    window.addEventListener('orientationchange', updateDeviceInfo);
+    
+    // Prevent form submission
+    document.getElementById('test-form').addEventListener('submit', function(e) {
+      e.preventDefault();
+      alert('Form submitted!');
+    });
+  </script>
+</body>
+</html>

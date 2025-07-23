@@ -1,0 +1,427 @@
+/* Responsive Layout System for Shodan IP Lookup
+ * This file contains styles for optimizing the layout across different devices
+ * Implements mobile-first responsive design with proper breakpoints
+ */
+
+/* ===== Responsive Breakpoint System ===== */
+:root {
+  /* Breakpoint Variables */
+  --breakpoint-xs: 0;
+  --breakpoint-sm: 576px;
+  --breakpoint-md: 768px;
+  --breakpoint-lg: 992px;
+  --breakpoint-xl: 1200px;
+  --breakpoint-xxl: 1400px;
+  
+  /* Container Max Widths */
+  --container-sm: 540px;
+  --container-md: 720px;
+  --container-lg: 960px;
+  --container-xl: 1140px;
+  --container-xxl: 1320px;
+  
+  /* Touch Target Sizes */
+  --touch-target-size: 44px;
+  --touch-target-spacing: 8px;
+}
+
+/* ===== Mobile-First Base Styles ===== */
+
+/* Base Container Adjustments */
+.container {
+  width: 100%;
+  padding-right: var(--space-4);
+  padding-left: var(--space-4);
+  margin-right: auto;
+  margin-left: auto;
+}
+
+/* Responsive Typography */
+html {
+  font-size: 16px; /* Base font size for mobile */
+}
+
+h1 {
+  font-size: var(--font-size-3xl);
+}
+
+h2 {
+  font-size: var(--font-size-2xl);
+}
+
+h3 {
+  font-size: var(--font-size-xl);
+}
+
+/* Mobile-First Layout Adjustments */
+.form-row {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+}
+
+/* Touch-Friendly Form Elements */
+.form-control {
+  min-height: var(--touch-target-size);
+  padding: var(--space-4) var(--space-4) var(--space-2);
+}
+
+.btn {
+  min-height: var(--touch-target-size);
+  padding: var(--space-3) var(--space-6);
+}
+
+/* Ensure proper spacing between interactive elements */
+.form-group + .form-group,
+.btn + .btn {
+  margin-top: var(--touch-target-spacing);
+}
+
+/* Mobile Navigation Enhancements */
+.mobile-nav {
+  top: 60px; /* Match header height */
+}
+
+.mobile-nav-link {
+  padding: var(--space-3) var(--space-4);
+  min-height: var(--touch-target-size);
+}
+
+/* Mobile Header Adjustments */
+.header-container {
+  padding: var(--space-2) 0;
+}
+
+.logo-text {
+  font-size: var(--font-size-xl);
+}
+
+.logo-icon {
+  width: 32px;
+  height: 32px;
+}
+
+/* Mobile-First Card Layout */
+.results-container {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--space-4);
+}
+
+.card {
+  padding: var(--space-4);
+}
+
+/* Mobile-First Footer */
+footer {
+  padding: var(--space-6) 0;
+}
+
+.footer-content {
+  flex-direction: column;
+  gap: var(--space-4);
+  text-align: center;
+}
+
+.theme-preferences {
+  margin-top: var(--space-4);
+}
+
+/* ===== Smooth Transitions Between Screen Sizes ===== */
+
+/* Apply transitions to layout elements */
+.container,
+.form-row,
+.results-container,
+.card,
+.header-container,
+.footer-content,
+.logo-text,
+.logo-icon {
+  transition: padding var(--transition-normal) var(--easing-standard),
+              margin var(--transition-normal) var(--easing-standard),
+              width var(--transition-normal) var(--easing-standard),
+              height var(--transition-normal) var(--easing-standard),
+              font-size var(--transition-normal) var(--easing-standard),
+              grid-template-columns var(--transition-normal) var(--easing-standard);
+}
+
+/* Prevent transitions on initial load or when user prefers reduced motion */
+.layout-transitioning * {
+  transition: none !important;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .container,
+  .form-row,
+  .results-container,
+  .card,
+  .header-container,
+  .footer-content,
+  .logo-text,
+  .logo-icon {
+    transition: none !important;
+  }
+}
+
+/* ===== Responsive Breakpoints ===== */
+
+/* Small devices (landscape phones, 576px and up) */
+@media (min-width: 576px) {
+  .container {
+    max-width: var(--container-sm);
+  }
+  
+  /* Adjust card padding */
+  .card {
+    padding: var(--space-5);
+  }
+  
+  /* Adjust form elements */
+  .form-control {
+    font-size: var(--font-size-md);
+  }
+  
+  /* Footer adjustments */
+  .footer-content {
+    text-align: left;
+  }
+}
+
+/* Medium devices (tablets, 768px and up) */
+@media (min-width: 768px) {
+  html {
+    font-size: 16px; /* Maintain base font size */
+  }
+  
+  .container {
+    max-width: var(--container-md);
+  }
+  
+  /* Header adjustments */
+  .header-nav {
+    display: flex;
+  }
+  
+  .mobile-menu-toggle {
+    display: none;
+  }
+  
+  .logo-text {
+    font-size: var(--font-size-2xl);
+  }
+  
+  .logo-icon {
+    width: 40px;
+    height: 40px;
+  }
+  
+  /* Form layout */
+  .form-row {
+    flex-direction: row;
+  }
+  
+  .form-group {
+    flex: 1;
+  }
+  
+  /* Results layout */
+  .results-container {
+    grid-template-columns: repeat(2, 1fr);
+    gap: var(--space-5);
+  }
+  
+  .card-summary {
+    grid-column: 1 / -1;
+  }
+  
+  /* Footer layout */
+  .footer-content {
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+  .theme-preferences {
+    margin-top: 0;
+  }
+}
+
+/* Large devices (desktops, 992px and up) */
+@media (min-width: 992px) {
+  html {
+    font-size: 17px; /* Slightly increase base font size */
+  }
+  
+  .container {
+    max-width: var(--container-lg);
+  }
+  
+  /* Header adjustments */
+  .theme-label {
+    display: inline-block;
+  }
+  
+  /* Results layout */
+  .results-container {
+    grid-template-columns: repeat(3, 1fr);
+    gap: var(--space-6);
+  }
+  
+  /* Card layout */
+  .card {
+    padding: var(--space-6);
+  }
+}
+
+/* Extra large devices (large desktops, 1200px and up) */
+@media (min-width: 1200px) {
+  html {
+    font-size: 18px; /* Further increase base font size */
+  }
+  
+  .container {
+    max-width: var(--container-xl);
+  }
+  
+  /* Results layout for larger screens */
+  .results-container {
+    grid-template-columns: repeat(3, 1fr);
+  }
+  
+  /* Larger cards with more padding */
+  .card {
+    padding: var(--space-8);
+  }
+}
+
+/* Extra extra large devices (larger desktops, 1400px and up) */
+@media (min-width: 1400px) {
+  .container {
+    max-width: var(--container-xxl);
+  }
+}
+
+/* ===== Touch-Friendly Optimizations ===== */
+
+/* Increase touch targets on touch devices */
+@media (hover: none) and (pointer: coarse) {
+  /* Larger buttons for touch */
+  .btn {
+    min-height: 48px;
+    padding: var(--space-4) var(--space-8);
+  }
+  
+  /* Larger form controls */
+  .form-control {
+    min-height: 48px;
+  }
+  
+  /* Increase spacing between interactive elements */
+  .nav-item + .nav-item {
+    margin-left: var(--space-4);
+  }
+  
+  /* Larger checkboxes and radio buttons */
+  input[type="checkbox"],
+  input[type="radio"] {
+    width: 24px;
+    height: 24px;
+  }
+  
+  /* Larger dropdown menus */
+  select.form-control {
+    height: 48px;
+  }
+}
+
+/* ===== Orientation-Specific Adjustments ===== */
+
+/* Landscape orientation on mobile devices */
+@media (max-width: 767px) and (orientation: landscape) {
+  /* Adjust header height */
+  .header-container {
+    height: 50px;
+  }
+  
+  /* Adjust mobile nav position */
+  .mobile-nav {
+    top: 50px;
+  }
+  
+  /* Optimize form layout for landscape */
+  .form-row {
+    flex-direction: row;
+  }
+  
+  .form-group {
+    flex: 1;
+  }
+}
+
+/* ===== Device-Specific Optimizations ===== */
+
+/* iPhone SE / Small devices optimization */
+@media (max-width: 375px) {
+  .logo-text {
+    font-size: var(--font-size-lg);
+  }
+  
+  .logo-icon {
+    width: 28px;
+    height: 28px;
+  }
+  
+  .card {
+    padding: var(--space-3);
+  }
+  
+  .card-title {
+    font-size: var(--font-size-lg);
+  }
+}
+
+/* iPad / Tablet optimization */
+@media (min-width: 768px) and (max-width: 1024px) {
+  .results-container {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  
+  .card-summary {
+    grid-column: 1 / -1;
+  }
+}
+
+/* ===== Print Media Styles ===== */
+@media print {
+  .header-nav,
+  .theme-controls,
+  .mobile-nav,
+  .theme-preferences,
+  .btn {
+    display: none !important;
+  }
+  
+  .container {
+    max-width: 100%;
+    padding: 0;
+    margin: 0;
+  }
+  
+  .card {
+    break-inside: avoid;
+    box-shadow: none !important;
+    border: 1px solid #ddd !important;
+  }
+  
+  body {
+    font-size: 12pt;
+    color: #000 !important;
+    background: #fff !important;
+  }
+  
+  a {
+    text-decoration: underline;
+    color: #000 !important;
+  }
+}

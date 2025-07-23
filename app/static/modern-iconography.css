@@ -1,0 +1,1601 @@
+/* Modern Iconography System */
+
+/* Icon Foundation System */
+:root {
+  /* Icon sizes */
+  --icon-xs: 0.75rem;    /* 12px */
+  --icon-sm: 1rem;       /* 16px */
+  --icon-md: 1.25rem;    /* 20px */
+  --icon-lg: 1.5rem;     /* 24px */
+  --icon-xl: 2rem;       /* 32px */
+  --icon-2xl: 2.5rem;    /* 40px */
+  --icon-3xl: 3rem;      /* 48px */
+  
+  /* Icon colors */
+  --icon-primary: var(--primary-500);
+  --icon-secondary: var(--text-secondary);
+  --icon-muted: var(--text-muted);
+  --icon-success: var(--success-500);
+  --icon-warning: var(--warning-500);
+  --icon-error: var(--error-500);
+  --icon-info: var(--info-500);
+  --icon-inverse: var(--text-inverse);
+  
+  /* Icon backgrounds */
+  --icon-bg-primary: var(--primary-50);
+  --icon-bg-secondary: var(--neutral-100);
+  --icon-bg-success: var(--success-50);
+  --icon-bg-warning: var(--warning-50);
+  --icon-bg-error: var(--error-50);
+  --icon-bg-info: var(--info-50);
+  
+  /* Icon stroke widths */
+  --icon-stroke-thin: 1px;
+  --icon-stroke-regular: 1.5px;
+  --icon-stroke-medium: 2px;
+  --icon-stroke-thick: 2.5px;
+  
+  /* Icon transitions */
+  --icon-transition-duration: 0.2s;
+  --icon-transition-timing: cubic-bezier(0.4, 0, 0.2, 1);
+  
+  /* Icon shadows */
+  --icon-shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.05);
+  --icon-shadow-md: 0 2px 4px rgba(0, 0, 0, 0.1);
+  --icon-shadow-lg: 0 4px 6px rgba(0, 0, 0, 0.1);
+  --icon-shadow-xl: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+  
+  /* Icon glow effects */
+  --icon-glow-primary: 0 0 8px rgba(59, 130, 246, 0.6);
+  --icon-glow-success: 0 0 8px rgba(16, 185, 129, 0.6);
+  --icon-glow-warning: 0 0 8px rgba(245, 158, 11, 0.6);
+  --icon-glow-error: 0 0 8px rgba(239, 68, 68, 0.6);
+  --icon-glow-info: 0 0 8px rgba(14, 165, 233, 0.6);
+}
+
+/* Dark theme icon backgrounds */
+[data-theme="dark"] {
+  --icon-bg-primary: var(--primary-900);
+  --icon-bg-secondary: var(--neutral-800);
+  --icon-bg-success: var(--success-900);
+  --icon-bg-warning: var(--warning-900);
+  --icon-bg-error: var(--error-900);
+  --icon-bg-info: var(--info-900);
+}
+
+/* Base Icon Styles */
+.icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: var(--icon-md);
+  line-height: 1;
+  transition: all var(--transition-fast) var(--easing-standard);
+  vertical-align: middle;
+}
+
+/* SVG Icon System */
+.svg-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: var(--icon-md);
+  height: var(--icon-md);
+  stroke-width: var(--icon-stroke-regular);
+  stroke: currentColor;
+  fill: none;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  transition: all var(--icon-transition-duration) var(--icon-transition-timing);
+  vertical-align: middle;
+}
+
+/* SVG Icon Sizes */
+.svg-icon-xs {
+  width: var(--icon-xs);
+  height: var(--icon-xs);
+}
+
+.svg-icon-sm {
+  width: var(--icon-sm);
+  height: var(--icon-sm);
+}
+
+.svg-icon-md {
+  width: var(--icon-md);
+  height: var(--icon-md);
+}
+
+.svg-icon-lg {
+  width: var(--icon-lg);
+  height: var(--icon-lg);
+}
+
+.svg-icon-xl {
+  width: var(--icon-xl);
+  height: var(--icon-xl);
+}
+
+.svg-icon-2xl {
+  width: var(--icon-2xl);
+  height: var(--icon-2xl);
+}
+
+.svg-icon-3xl {
+  width: var(--icon-3xl);
+  height: var(--icon-3xl);
+}
+
+/* SVG Icon Stroke Widths */
+.svg-icon-stroke-thin {
+  stroke-width: var(--icon-stroke-thin);
+}
+
+.svg-icon-stroke-regular {
+  stroke-width: var(--icon-stroke-regular);
+}
+
+.svg-icon-stroke-medium {
+  stroke-width: var(--icon-stroke-medium);
+}
+
+.svg-icon-stroke-thick {
+  stroke-width: var(--icon-stroke-thick);
+}
+
+/* Icon Sizes */
+.icon-xs { font-size: var(--icon-xs); }
+.icon-sm { font-size: var(--icon-sm); }
+.icon-md { font-size: var(--icon-md); }
+.icon-lg { font-size: var(--icon-lg); }
+.icon-xl { font-size: var(--icon-xl); }
+.icon-2xl { font-size: var(--icon-2xl); }
+.icon-3xl { font-size: var(--icon-3xl); }
+
+/* Icon Colors */
+.icon-primary { color: var(--icon-primary); }
+.icon-secondary { color: var(--icon-secondary); }
+.icon-muted { color: var(--icon-muted); }
+.icon-success { color: var(--icon-success); }
+.icon-warning { color: var(--icon-warning); }
+.icon-error { color: var(--icon-error); }
+.icon-info { color: var(--icon-info); }
+.icon-inverse { color: var(--icon-inverse); }
+
+/* Icon Containers */
+.icon-container {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: var(--border-radius-md);
+  transition: all var(--transition-fast) var(--easing-standard);
+  position: relative;
+  overflow: hidden;
+}
+
+/* Icon Container Sizes */
+.icon-container-xs {
+  width: 1.5rem;
+  height: 1.5rem;
+  padding: 0.125rem;
+}
+
+.icon-container-sm {
+  width: 2rem;
+  height: 2rem;
+  padding: 0.25rem;
+}
+
+.icon-container-md {
+  width: 2.5rem;
+  height: 2.5rem;
+  padding: 0.375rem;
+}
+
+.icon-container-lg {
+  width: 3rem;
+  height: 3rem;
+  padding: 0.5rem;
+}
+
+.icon-container-xl {
+  width: 4rem;
+  height: 4rem;
+  padding: 0.75rem;
+}
+
+/* Icon Container Variants */
+.icon-container-primary {
+  background-color: var(--icon-bg-primary);
+  color: var(--icon-primary);
+}
+
+.icon-container-secondary {
+  background-color: var(--icon-bg-secondary);
+  color: var(--icon-secondary);
+}
+
+.icon-container-success {
+  background-color: var(--icon-bg-success);
+  color: var(--icon-success);
+}
+
+.icon-container-warning {
+  background-color: var(--icon-bg-warning);
+  color: var(--icon-warning);
+}
+
+.icon-container-error {
+  background-color: var(--icon-bg-error);
+  color: var(--icon-error);
+}
+
+.icon-container-info {
+  background-color: var(--icon-bg-info);
+  color: var(--icon-info);
+}
+
+/* Icon Container Shapes */
+.icon-container-rounded {
+  border-radius: var(--border-radius-md);
+}
+
+.icon-container-circle {
+  border-radius: var(--border-radius-full);
+}
+
+.icon-container-square {
+  border-radius: 0;
+}
+
+/* Interactive Icon Containers */
+.icon-container-interactive {
+  cursor: pointer;
+  transition: all var(--transition-normal) var(--easing-standard);
+}
+
+.icon-container-interactive:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-md);
+}
+
+.icon-container-interactive:active {
+  transform: translateY(0) scale(0.95);
+}
+
+/* Icon Badges */
+.icon-badge {
+  position: relative;
+  display: inline-flex;
+}
+
+.icon-badge::after {
+  content: '';
+  position: absolute;
+  top: -2px;
+  right: -2px;
+  width: 8px;
+  height: 8px;
+  background-color: var(--error-500);
+  border: 2px solid var(--card-background);
+  border-radius: var(--border-radius-full);
+  opacity: 0;
+  transform: scale(0);
+  transition: all var(--transition-fast) var(--easing-standard);
+}
+
+.icon-badge.has-notification::after {
+  opacity: 1;
+  transform: scale(1);
+}
+
+/* Status Icons */
+.status-icon {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-medium);
+}
+
+.status-icon-online {
+  color: var(--success-600);
+}
+
+.status-icon-offline {
+  color: var(--error-600);
+}
+
+.status-icon-warning {
+  color: var(--warning-600);
+}
+
+.status-icon-unknown {
+  color: var(--text-muted);
+}
+
+/* Severity Icons */
+.severity-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 1.5rem;
+  height: 1.5rem;
+  border-radius: var(--border-radius-full);
+  font-size: var(--icon-sm);
+  font-weight: bold;
+}
+
+.severity-critical {
+  background-color: var(--error-500);
+  color: white;
+}
+
+.severity-high {
+  background-color: var(--error-400);
+  color: white;
+}
+
+.severity-medium {
+  background-color: var(--warning-500);
+  color: white;
+}
+
+.severity-low {
+  background-color: var(--warning-300);
+  color: var(--warning-900);
+}
+
+.severity-info {
+  background-color: var(--info-500);
+  color: white;
+}
+
+/* Service Type Icons */
+.service-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 2rem;
+  height: 2rem;
+  border-radius: var(--border-radius-md);
+  background-color: var(--neutral-100);
+  color: var(--text-secondary);
+  font-size: var(--icon-sm);
+  margin-right: var(--space-2);
+}
+
+[data-theme="dark"] .service-icon {
+  background-color: var(--neutral-700);
+  color: var(--text-secondary);
+}
+
+.service-icon-http {
+  background-color: var(--success-100);
+  color: var(--success-700);
+}
+
+[data-theme="dark"] .service-icon-http {
+  background-color: var(--success-900);
+  color: var(--success-300);
+}
+
+.service-icon-https {
+  background-color: var(--success-100);
+  color: var(--success-700);
+}
+
+[data-theme="dark"] .service-icon-https {
+  background-color: var(--success-900);
+  color: var(--success-300);
+}
+
+.service-icon-ssh {
+  background-color: var(--info-100);
+  color: var(--info-700);
+}
+
+[data-theme="dark"] .service-icon-ssh {
+  background-color: var(--info-900);
+  color: var(--info-300);
+}
+
+.service-icon-ftp {
+  background-color: var(--warning-100);
+  color: var(--warning-700);
+}
+
+[data-theme="dark"] .service-icon-ftp {
+  background-color: var(--warning-900);
+  color: var(--warning-300);
+}
+
+.service-icon-database {
+  background-color: var(--primary-100);
+  color: var(--primary-700);
+}
+
+[data-theme="dark"] .service-icon-database {
+  background-color: var(--primary-900);
+  color: var(--primary-300);
+}
+
+/* Loading Icons */
+.icon-loading {
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+.icon-pulse {
+  animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+
+@keyframes pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.5; }
+}
+
+/* Icon Animations */
+.icon-bounce {
+  animation: bounce 1s infinite;
+}
+
+@keyframes bounce {
+  0%, 20%, 53%, 80%, 100% {
+    animation-timing-function: cubic-bezier(0.215, 0.61, 0.355, 1);
+    transform: translate3d(0, 0, 0);
+  }
+  40%, 43% {
+    animation-timing-function: cubic-bezier(0.755, 0.05, 0.855, 0.06);
+    transform: translate3d(0, -30px, 0);
+  }
+  70% {
+    animation-timing-function: cubic-bezier(0.755, 0.05, 0.855, 0.06);
+    transform: translate3d(0, -15px, 0);
+  }
+  90% {
+    transform: translate3d(0, -4px, 0);
+  }
+}
+
+.icon-shake {
+  animation: shake 0.82s cubic-bezier(0.36, 0.07, 0.19, 0.97) both;
+}
+
+@keyframes shake {
+  10%, 90% { transform: translate3d(-1px, 0, 0); }
+  20%, 80% { transform: translate3d(2px, 0, 0); }
+  30%, 50%, 70% { transform: translate3d(-4px, 0, 0); }
+  40%, 60% { transform: translate3d(4px, 0, 0); }
+}
+
+/* Icon Groups */
+.icon-group {
+  display: flex;
+  align-items: center;
+  gap: var(--space-1);
+}
+
+.icon-group-stacked {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-1);
+}
+
+/* Icon with Text */
+.icon-text {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  font-size: var(--font-size-sm);
+}
+
+.icon-text-vertical {
+  display: inline-flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-1);
+  text-align: center;
+  font-size: var(--font-size-xs);
+}
+
+/* Accessibility Enhancements */
+.icon[aria-hidden="true"] {
+  pointer-events: none;
+}
+
+.icon-button {
+  background: none;
+  border: none;
+  padding: var(--space-2);
+  border-radius: var(--border-radius-md);
+  cursor: pointer;
+  transition: all var(--transition-fast) var(--easing-standard);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.icon-button:hover {
+  background-color: var(--neutral-100);
+}
+
+[data-theme="dark"] .icon-button:hover {
+  background-color: var(--neutral-700);
+}
+
+.icon-button:focus {
+  outline: 2px solid var(--primary-500);
+  outline-offset: 2px;
+}
+
+.icon-button:active {
+  transform: scale(0.95);
+}
+
+/* High Contrast Mode Support */
+@media (prefers-contrast: high) {
+  .icon-container {
+    border: 1px solid currentColor;
+  }
+  
+  .severity-icon {
+    border: 2px solid currentColor;
+  }
+}
+
+/* Reduced Motion Support */
+@media (prefers-reduced-motion: reduce) {
+  .icon-loading,
+  .icon-pulse,
+  .icon-bounce,
+  .icon-shake {
+    animation: none;
+  }
+  
+  .icon-container-interactive:hover {
+    transform: none;
+  }
+}
+
+/* Data Type Visual Indicators */
+.data-type-indicator {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-1);
+  padding: var(--space-1) var(--space-2);
+  border-radius: var(--border-radius-md);
+  font-size: var(--font-size-xs);
+  font-weight: var(--font-weight-medium);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  transition: all var(--transition-fast) var(--easing-standard);
+}
+
+.data-type-ip {
+  background-color: var(--primary-100);
+  color: var(--primary-700);
+  border: 1px solid var(--primary-200);
+}
+
+[data-theme="dark"] .data-type-ip {
+  background-color: var(--primary-900);
+  color: var(--primary-300);
+  border-color: var(--primary-800);
+}
+
+.data-type-location {
+  background-color: var(--success-100);
+  color: var(--success-700);
+  border: 1px solid var(--success-200);
+}
+
+[data-theme="dark"] .data-type-location {
+  background-color: var(--success-900);
+  color: var(--success-300);
+  border-color: var(--success-800);
+}
+
+.data-type-organization {
+  background-color: var(--info-100);
+  color: var(--info-700);
+  border: 1px solid var(--info-200);
+}
+
+[data-theme="dark"] .data-type-organization {
+  background-color: var(--info-900);
+  color: var(--info-300);
+  border-color: var(--info-800);
+}
+
+.data-type-vulnerability {
+  background-color: var(--error-100);
+  color: var(--error-700);
+  border: 1px solid var(--error-200);
+}
+
+[data-theme="dark"] .data-type-vulnerability {
+  background-color: var(--error-900);
+  color: var(--error-300);
+  border-color: var(--error-800);
+}
+
+.data-type-service {
+  background-color: var(--warning-100);
+  color: var(--warning-700);
+  border: 1px solid var(--warning-200);
+}
+
+[data-theme="dark"] .data-type-service {
+  background-color: var(--warning-900);
+  color: var(--warning-300);
+  border-color: var(--warning-800);
+}
+
+/* Port Status Indicators */
+.port-status {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-1);
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-medium);
+}
+
+.port-status-open {
+  color: var(--success-600);
+}
+
+.port-status-closed {
+  color: var(--error-600);
+}
+
+.port-status-filtered {
+  color: var(--warning-600);
+}
+
+.port-status-unknown {
+  color: var(--text-muted);
+}
+
+/* Connection Status Icons */
+.connection-status {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 12px;
+  height: 12px;
+  border-radius: var(--border-radius-full);
+  position: relative;
+}
+
+.connection-status::before {
+  content: '';
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  border-radius: inherit;
+  animation: pulse-ring 2s infinite;
+}
+
+.connection-online {
+  background-color: var(--success-500);
+}
+
+.connection-online::before {
+  background-color: var(--success-500);
+}
+
+.connection-offline {
+  background-color: var(--error-500);
+}
+
+.connection-offline::before {
+  background-color: var(--error-500);
+}
+
+.connection-unknown {
+  background-color: var(--text-muted);
+}
+
+.connection-unknown::before {
+  background-color: var(--text-muted);
+}
+
+@keyframes pulse-ring {
+  0% {
+    transform: scale(0.8);
+    opacity: 1;
+  }
+  100% {
+    transform: scale(2);
+    opacity: 0;
+  }
+}
+
+/* Geographic Location Icons */
+.geo-icon {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  color: var(--text-secondary);
+  font-size: var(--font-size-sm);
+}
+
+.geo-icon .svg-icon {
+  color: var(--success-500);
+}
+
+/* Organization Type Icons */
+.org-type-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 1.75rem;
+  height: 1.75rem;
+  border-radius: var(--border-radius-md);
+  background-color: var(--info-100);
+  color: var(--info-600);
+  font-size: var(--icon-sm);
+}
+
+[data-theme="dark"] .org-type-icon {
+  background-color: var(--info-900);
+  color: var(--info-400);
+}
+
+/* Vulnerability Severity Visual System */
+.vuln-severity-indicator {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  padding: var(--space-1) var(--space-3);
+  border-radius: var(--border-radius-full);
+  font-size: var(--font-size-xs);
+  font-weight: var(--font-weight-bold);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  border: 2px solid transparent;
+  position: relative;
+  overflow: hidden;
+}
+
+.vuln-severity-indicator::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+  transition: left 0.5s;
+}
+
+.vuln-severity-indicator:hover::before {
+  left: 100%;
+}
+
+.vuln-critical {
+  background: linear-gradient(135deg, var(--error-500), var(--error-600));
+  color: white;
+  box-shadow: 0 0 15px rgba(239, 68, 68, 0.3);
+}
+
+.vuln-high {
+  background: linear-gradient(135deg, var(--error-400), var(--error-500));
+  color: white;
+  box-shadow: 0 0 12px rgba(248, 113, 113, 0.3);
+}
+
+.vuln-medium {
+  background: linear-gradient(135deg, var(--warning-500), var(--warning-600));
+  color: white;
+  box-shadow: 0 0 10px rgba(245, 158, 11, 0.3);
+}
+
+.vuln-low {
+  background: linear-gradient(135deg, var(--warning-300), var(--warning-400));
+  color: var(--warning-900);
+  box-shadow: 0 0 8px rgba(252, 211, 77, 0.3);
+}
+
+.vuln-info {
+  background: linear-gradient(135deg, var(--info-500), var(--info-600));
+  color: white;
+  box-shadow: 0 0 8px rgba(14, 165, 233, 0.3);
+}
+
+/* Enhanced Vulnerability Badge */
+.vulnerability-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  padding: var(--space-1) var(--space-2);
+  border-radius: var(--border-radius-lg);
+  font-size: var(--font-size-xs);
+  font-weight: var(--font-weight-bold);
+  position: relative;
+  overflow: hidden;
+  box-shadow: var(--shadow-sm);
+  transition: all var(--transition-normal) var(--easing-standard);
+  backdrop-filter: blur(4px);
+  border: 1px solid transparent;
+}
+
+.vulnerability-badge:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-md);
+}
+
+.vulnerability-badge .vuln-label {
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.vulnerability-badge .vuln-cve-id {
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  padding: 0.1rem 0.3rem;
+  background-color: rgba(255, 255, 255, 0.2);
+  border-radius: var(--border-radius-sm);
+}
+
+.vulnerability-badge.vuln-critical {
+  background: linear-gradient(135deg, var(--error-600), var(--error-700));
+  color: white;
+  border-color: var(--error-500);
+}
+
+.vulnerability-badge.vuln-high {
+  background: linear-gradient(135deg, var(--error-500), var(--error-600));
+  color: white;
+  border-color: var(--error-400);
+}
+
+.vulnerability-badge.vuln-medium {
+  background: linear-gradient(135deg, var(--warning-600), var(--warning-700));
+  color: white;
+  border-color: var(--warning-500);
+}
+
+.vulnerability-badge.vuln-low {
+  background: linear-gradient(135deg, var(--warning-400), var(--warning-500));
+  color: white;
+  border-color: var(--warning-300);
+}
+
+.vulnerability-badge.vuln-info {
+  background: linear-gradient(135deg, var(--info-600), var(--info-700));
+  color: white;
+  border-color: var(--info-500);
+}
+
+.badge-pulsate {
+  animation: badgePulse 2s infinite;
+}
+
+@keyframes badgePulse {
+  0% {
+    box-shadow: 0 0 0 0 rgba(239, 68, 68, 0.4);
+  }
+  70% {
+    box-shadow: 0 0 0 6px rgba(239, 68, 68, 0);
+  }
+  100% {
+    box-shadow: 0 0 0 0 rgba(239, 68, 68, 0);
+  }
+}
+
+/* Interactive Icon Enhancements */
+.icon-interactive {
+  cursor: pointer;
+  transition: all var(--transition-fast) var(--easing-standard);
+  position: relative;
+  overflow: hidden;
+}
+
+.icon-interactive::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 0;
+  height: 0;
+  background: rgba(255, 255, 255, 0.2);
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+  transition: width 0.3s, height 0.3s;
+}
+
+.icon-interactive:hover::before {
+  width: 100%;
+  height: 100%;
+}
+
+.icon-interactive:hover {
+  transform: translateY(-2px) scale(1.05);
+}
+
+.icon-interactive:active {
+  transform: translateY(0) scale(0.95);
+}
+
+/* Copy to Clipboard Icon */
+.copy-icon {
+  opacity: 0.6;
+  transition: all var(--transition-fast) var(--easing-standard);
+}
+
+.copy-icon:hover {
+  opacity: 1;
+  color: var(--primary-500);
+  transform: scale(1.1);
+}
+
+.copy-icon.copied {
+  color: var(--success-500);
+  animation: copySuccess 0.5s ease-out;
+}
+
+@keyframes copySuccess {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.3); }
+  100% { transform: scale(1); }
+}
+
+/* Loading State Icons */
+.icon-loading-state {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.icon-loading-state::after {
+  content: '';
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  border: 2px solid transparent;
+  border-top: 2px solid currentColor;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+  opacity: 0;
+  transition: opacity var(--transition-fast);
+}
+
+.icon-loading-state.is-loading::after {
+  opacity: 1;
+}
+
+.icon-loading-state.is-loading .svg-icon,
+.icon-loading-state.is-loading .icon {
+  opacity: 0.3;
+}
+
+/* Icon Tooltips */
+.icon-tooltip {
+  position: relative;
+}
+
+.icon-tooltip::after {
+  content: attr(data-tooltip);
+  position: absolute;
+  bottom: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  background: var(--neutral-900);
+  color: white;
+  padding: var(--space-1) var(--space-2);
+  border-radius: var(--border-radius-sm);
+  font-size: var(--font-size-xs);
+  white-space: nowrap;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity var(--transition-fast);
+  z-index: 1000;
+  margin-bottom: var(--space-1);
+}
+
+[data-theme="dark"] .icon-tooltip::after {
+  background: var(--neutral-100);
+  color: var(--neutral-900);
+}
+
+.icon-tooltip::before {
+  content: '';
+  position: absolute;
+  bottom: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  border: 4px solid transparent;
+  border-top-color: var(--neutral-900);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity var(--transition-fast);
+  z-index: 1000;
+}
+
+[data-theme="dark"] .icon-tooltip::before {
+  border-top-color: var(--neutral-100);
+}
+
+.icon-tooltip:hover::after,
+.icon-tooltip:hover::before {
+  opacity: 1;
+}
+
+/* Service Protocol Icons with Enhanced Styling */
+.protocol-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 2.25rem;
+  height: 2.25rem;
+  border-radius: var(--border-radius-lg);
+  font-size: var(--icon-sm);
+  font-weight: var(--font-weight-bold);
+  position: relative;
+  overflow: hidden;
+  transition: all var(--transition-normal) var(--easing-standard);
+}
+
+.protocol-icon::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0));
+  opacity: 0;
+  transition: opacity var(--transition-fast);
+}
+
+.protocol-icon:hover::before {
+  opacity: 1;
+}
+
+.protocol-http {
+  background: linear-gradient(135deg, var(--success-500), var(--success-600));
+  color: white;
+  box-shadow: 0 4px 12px rgba(16, 185, 129, 0.3);
+}
+
+.protocol-https {
+  background: linear-gradient(135deg, var(--success-600), var(--success-700));
+  color: white;
+  box-shadow: 0 4px 12px rgba(5, 150, 105, 0.3);
+}
+
+.protocol-ssh {
+  background: linear-gradient(135deg, var(--info-500), var(--info-600));
+  color: white;
+  box-shadow: 0 4px 12px rgba(14, 165, 233, 0.3);
+}
+
+.protocol-ftp {
+  background: linear-gradient(135deg, var(--warning-500), var(--warning-600));
+  color: white;
+  box-shadow: 0 4px 12px rgba(245, 158, 11, 0.3);
+}
+
+.protocol-telnet {
+  background: linear-gradient(135deg, var(--error-400), var(--error-500));
+  color: white;
+  box-shadow: 0 4px 12px rgba(248, 113, 113, 0.3);
+}
+
+.protocol-dns {
+  background: linear-gradient(135deg, var(--primary-500), var(--primary-600));
+  color: white;
+  box-shadow: 0 4px 12px rgba(59, 130, 246, 0.3);
+}
+
+.protocol-mail {
+  background: linear-gradient(135deg, var(--info-400), var(--info-500));
+  color: white;
+  box-shadow: 0 4px 12px rgba(56, 189, 248, 0.3);
+}
+
+/* Icon State Animations */
+.icon-state-success {
+  animation: successPulse 0.6s ease-out;
+}
+
+@keyframes successPulse {
+  0% { 
+    transform: scale(1);
+    box-shadow: 0 0 0 0 rgba(16, 185, 129, 0.7);
+  }
+  70% { 
+    transform: scale(1.1);
+    box-shadow: 0 0 0 10px rgba(16, 185, 129, 0);
+  }
+  100% { 
+    transform: scale(1);
+    box-shadow: 0 0 0 0 rgba(16, 185, 129, 0);
+  }
+}
+
+.icon-state-error {
+  animation: errorShake 0.5s ease-in-out;
+}
+
+@keyframes errorShake {
+  0%, 100% { transform: translateX(0); }
+  25% { transform: translateX(-4px); }
+  75% { transform: translateX(4px); }
+}
+
+.icon-state-warning {
+  animation: warningBounce 0.8s ease-in-out;
+}
+
+@keyframes warningBounce {
+  0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
+  40% { transform: translateY(-8px); }
+  60% { transform: translateY(-4px); }
+}
+
+/* Accessibility Enhancements */
+.icon-accessible {
+  position: relative;
+}
+
+.icon-accessible:focus {
+  outline: 2px solid var(--primary-500);
+  outline-offset: 2px;
+  border-radius: var(--border-radius-sm);
+}
+
+.icon-accessible[aria-pressed="true"] {
+  background-color: var(--primary-100);
+  color: var(--primary-700);
+}
+
+[data-theme="dark"] .icon-accessible[aria-pressed="true"] {
+  background-color: var(--primary-900);
+  color: var(--primary-300);
+}
+
+/* Print Styles */
+@media print {
+  .icon-container {
+    background: none !important;
+    border: 1px solid #000;
+  }
+  
+  .severity-icon,
+  .vuln-severity-indicator,
+  .protocol-icon {
+    background: none !important;
+    border: 1px solid #000;
+    color: #000 !important;
+    box-shadow: none !important;
+  }
+  
+  .data-type-indicator {
+    background: none !important;
+    border: 1px solid #000;
+    color: #000 !important;
+  }
+}/*
+ Service Badge Styles */
+.service-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  padding: var(--space-1) var(--space-2);
+  border-radius: var(--border-radius-lg);
+  font-size: var(--font-size-xs);
+  font-weight: var(--font-weight-medium);
+  position: relative;
+  overflow: hidden;
+  box-shadow: var(--shadow-sm);
+  transition: all var(--transition-normal) var(--easing-standard);
+  background: var(--neutral-100);
+  color: var(--text-primary);
+  border: 1px solid var(--neutral-200);
+}
+
+[data-theme="dark"] .service-badge {
+  background: var(--neutral-800);
+  color: var(--text-primary);
+  border-color: var(--neutral-700);
+}
+
+.service-badge:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-md);
+}
+
+.service-badge .service-name {
+  font-weight: var(--font-weight-bold);
+}
+
+.service-badge .service-port {
+  font-family: var(--font-mono);
+  opacity: 0.8;
+}
+
+/* Service-specific styling */
+.service-badge.service-http {
+  background: linear-gradient(135deg, var(--success-100), var(--success-200));
+  color: var(--success-800);
+  border-color: var(--success-300);
+}
+
+[data-theme="dark"] .service-badge.service-http {
+  background: linear-gradient(135deg, var(--success-900), var(--success-800));
+  color: var(--success-200);
+  border-color: var(--success-700);
+}
+
+.service-badge.service-https {
+  background: linear-gradient(135deg, var(--success-200), var(--success-300));
+  color: var(--success-900);
+  border-color: var(--success-400);
+}
+
+[data-theme="dark"] .service-badge.service-https {
+  background: linear-gradient(135deg, var(--success-800), var(--success-700));
+  color: var(--success-100);
+  border-color: var(--success-600);
+}
+
+.service-badge.service-ssh {
+  background: linear-gradient(135deg, var(--info-100), var(--info-200));
+  color: var(--info-800);
+  border-color: var(--info-300);
+}
+
+[data-theme="dark"] .service-badge.service-ssh {
+  background: linear-gradient(135deg, var(--info-900), var(--info-800));
+  color: var(--info-200);
+  border-color: var(--info-700);
+}
+
+.service-badge.service-ftp {
+  background: linear-gradient(135deg, var(--warning-100), var(--warning-200));
+  color: var(--warning-800);
+  border-color: var(--warning-300);
+}
+
+[data-theme="dark"] .service-badge.service-ftp {
+  background: linear-gradient(135deg, var(--warning-900), var(--warning-800));
+  color: var(--warning-200);
+  border-color: var(--warning-700);
+}
+
+.service-badge.service-telnet {
+  background: linear-gradient(135deg, var(--error-100), var(--error-200));
+  color: var(--error-800);
+  border-color: var(--error-300);
+}
+
+[data-theme="dark"] .service-badge.service-telnet {
+  background: linear-gradient(135deg, var(--error-900), var(--error-800));
+  color: var(--error-200);
+  border-color: var(--error-700);
+}
+
+.service-badge.service-dns {
+  background: linear-gradient(135deg, var(--primary-100), var(--primary-200));
+  color: var(--primary-800);
+  border-color: var(--primary-300);
+}
+
+[data-theme="dark"] .service-badge.service-dns {
+  background: linear-gradient(135deg, var(--primary-900), var(--primary-800));
+  color: var(--primary-200);
+  border-color: var(--primary-700);
+}
+
+.service-badge.service-sql,
+.service-badge.service-mysql,
+.service-badge.service-mssql,
+.service-badge.service-postgres {
+  background: linear-gradient(135deg, var(--primary-100), var(--info-100));
+  color: var(--primary-800);
+  border-color: var(--primary-300);
+}
+
+[data-theme="dark"] .service-badge.service-sql,
+[data-theme="dark"] .service-badge.service-mysql,
+[data-theme="dark"] .service-badge.service-mssql,
+[data-theme="dark"] .service-badge.service-postgres {
+  background: linear-gradient(135deg, var(--primary-900), var(--info-900));
+  color: var(--primary-200);
+  border-color: var(--primary-700);
+}
+
+/* Status Indicator Styles */
+.status-indicator {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  padding: var(--space-1) var(--space-2);
+  border-radius: var(--border-radius-full);
+  font-size: var(--font-size-xs);
+  font-weight: var(--font-weight-medium);
+  position: relative;
+  transition: all var(--transition-normal) var(--easing-standard);
+}
+
+.status-indicator .status-label {
+  font-weight: var(--font-weight-bold);
+}
+
+/* Status types */
+.status-indicator.status-vulnerability.status-critical {
+  color: var(--error-600);
+}
+
+.status-indicator.status-vulnerability.status-high {
+  color: var(--error-500);
+}
+
+.status-indicator.status-vulnerability.status-medium {
+  color: var(--warning-600);
+}
+
+.status-indicator.status-vulnerability.status-low {
+  color: var(--warning-500);
+}
+
+.status-indicator.status-vulnerability.status-info {
+  color: var(--info-600);
+}
+
+.status-indicator.status-port.status-open {
+  color: var(--success-600);
+}
+
+.status-indicator.status-port.status-closed {
+  color: var(--error-600);
+}
+
+.status-indicator.status-port.status-filtered {
+  color: var(--warning-600);
+}
+
+.status-pulsate {
+  animation: statusPulse 2s infinite;
+}
+
+@keyframes statusPulse {
+  0% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.6;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+/* Data Visualization Icon Styles */
+.data-viz-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--space-2);
+  border-radius: var(--border-radius-lg);
+  background: var(--neutral-100);
+  color: var(--text-primary);
+  transition: all var(--transition-normal) var(--easing-standard);
+  box-shadow: var(--shadow-sm);
+  position: relative;
+  overflow: hidden;
+}
+
+[data-theme="dark"] .data-viz-icon {
+  background: var(--neutral-800);
+  color: var(--text-primary);
+}
+
+.data-viz-icon:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-md);
+}
+
+.data-viz-icon .data-viz-label {
+  margin-top: var(--space-1);
+  font-size: var(--font-size-xs);
+  text-align: center;
+}
+
+.data-viz-icon.data-viz-chart {
+  background: linear-gradient(135deg, var(--primary-100), var(--info-100));
+  color: var(--primary-700);
+}
+
+[data-theme="dark"] .data-viz-icon.data-viz-chart {
+  background: linear-gradient(135deg, var(--primary-900), var(--info-900));
+  color: var(--primary-300);
+}
+
+.data-viz-icon.data-viz-pie {
+  background: linear-gradient(135deg, var(--success-100), var(--primary-100));
+  color: var(--success-700);
+}
+
+[data-theme="dark"] .data-viz-icon.data-viz-pie {
+  background: linear-gradient(135deg, var(--success-900), var(--primary-900));
+  color: var(--success-300);
+}
+
+.data-viz-icon.data-viz-trend-up {
+  background: linear-gradient(135deg, var(--success-100), var(--success-200));
+  color: var(--success-700);
+}
+
+[data-theme="dark"] .data-viz-icon.data-viz-trend-up {
+  background: linear-gradient(135deg, var(--success-900), var(--success-800));
+  color: var(--success-300);
+}
+
+.data-viz-icon.data-viz-trend-down {
+  background: linear-gradient(135deg, var(--error-100), var(--error-200));
+  color: var(--error-700);
+}
+
+[data-theme="dark"] .data-viz-icon.data-viz-trend-down {
+  background: linear-gradient(135deg, var(--error-900), var(--error-800));
+  color: var(--error-300);
+}
+
+/* Enhanced Tooltip System */
+.icon-tooltip {
+  position: relative;
+}
+
+.icon-tooltip::after {
+  content: attr(data-tooltip);
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  background: var(--neutral-900);
+  color: white;
+  padding: var(--space-1) var(--space-2);
+  border-radius: var(--border-radius-sm);
+  font-size: var(--font-size-xs);
+  white-space: nowrap;
+  opacity: 0;
+  pointer-events: none;
+  transition: all var(--transition-fast) var(--easing-standard);
+  z-index: 1000;
+  box-shadow: var(--shadow-md);
+  max-width: 200px;
+  text-align: center;
+}
+
+.icon-tooltip::before {
+  content: '';
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  border: 6px solid transparent;
+  opacity: 0;
+  pointer-events: none;
+  transition: all var(--transition-fast) var(--easing-standard);
+  z-index: 1000;
+}
+
+.icon-tooltip.tooltip-top::after {
+  bottom: 100%;
+  margin-bottom: var(--space-2);
+}
+
+.icon-tooltip.tooltip-top::before {
+  bottom: 100%;
+  border-top-color: var(--neutral-900);
+}
+
+.icon-tooltip.tooltip-bottom::after {
+  top: 100%;
+  margin-top: var(--space-2);
+}
+
+.icon-tooltip.tooltip-bottom::before {
+  top: 100%;
+  border-bottom-color: var(--neutral-900);
+}
+
+.icon-tooltip.tooltip-visible::after,
+.icon-tooltip.tooltip-visible::before {
+  opacity: 1;
+}
+
+[data-theme="dark"] .icon-tooltip::after {
+  background: var(--neutral-100);
+  color: var(--neutral-900);
+}
+
+[data-theme="dark"] .icon-tooltip.tooltip-top::before {
+  border-top-color: var(--neutral-100);
+}
+
+[data-theme="dark"] .icon-tooltip.tooltip-bottom::before {
+  border-bottom-color: var(--neutral-100);
+}
+
+/* Animate on scroll icons */
+.icon-animate-on-scroll {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.6s var(--easing-standard), transform 0.6s var(--easing-standard);
+}
+
+.icon-animate-on-scroll.icon-animate {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Reduced motion support */
+.reduced-motion .icon-loading,
+.reduced-motion .icon-pulse,
+.reduced-motion .icon-bounce,
+.reduced-motion .icon-shake,
+.reduced-motion .badge-pulsate,
+.reduced-motion .status-pulsate,
+.reduced-motion .connection-status::before {
+  animation: none !important;
+}
+
+.reduced-motion .icon-interactive:hover,
+.reduced-motion .service-badge:hover,
+.reduced-motion .vulnerability-badge:hover,
+.reduced-motion .data-viz-icon:hover {
+  transform: none !important;
+}
+
+/* High contrast mode enhancements */
+@media (prefers-contrast: high) {
+  .vulnerability-badge,
+  .service-badge,
+  .status-indicator,
+  .data-viz-icon {
+    border-width: 2px !important;
+  }
+  
+  .vulnerability-badge.vuln-critical,
+  .vulnerability-badge.vuln-high,
+  .vulnerability-badge.vuln-medium,
+  .vulnerability-badge.vuln-low,
+  .vulnerability-badge.vuln-info {
+    background: transparent !important;
+    color: currentColor !important;
+  }
+  
+  .vulnerability-badge.vuln-critical {
+    border-color: var(--error-700) !important;
+    color: var(--error-700) !important;
+  }
+  
+  .vulnerability-badge.vuln-high {
+    border-color: var(--error-600) !important;
+    color: var(--error-600) !important;
+  }
+  
+  .vulnerability-badge.vuln-medium {
+    border-color: var(--warning-700) !important;
+    color: var(--warning-700) !important;
+  }
+  
+  .vulnerability-badge.vuln-low {
+    border-color: var(--warning-600) !important;
+    color: var(--warning-600) !important;
+  }
+  
+  .vulnerability-badge.vuln-info {
+    border-color: var(--info-700) !important;
+    color: var(--info-700) !important;
+  }
+}

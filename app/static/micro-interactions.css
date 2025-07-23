@@ -1,0 +1,583 @@
+/* Micro-interactions and Animations
+ * This file contains styles for interactive elements, hover effects,
+ * click animations, content appearance animations, and form feedback animations
+ */
+
+/* ===== Base Animation Variables ===== */
+:root {
+  /* Animation Durations */
+  --animation-duration-fast: 150ms;
+  --animation-duration-normal: 300ms;
+  --animation-duration-slow: 500ms;
+  
+  /* Animation Easings */
+  --animation-easing-standard: cubic-bezier(0.4, 0, 0.2, 1);
+  --animation-easing-accelerate: cubic-bezier(0.4, 0, 1, 1);
+  --animation-easing-decelerate: cubic-bezier(0, 0, 0.2, 1);
+  --animation-easing-bounce: cubic-bezier(0.68, -0.55, 0.265, 1.55);
+  
+  /* Animation Scales */
+  --animation-scale-hover: 1.03;
+  --animation-scale-active: 0.97;
+  --animation-scale-bounce: 1.05;
+  
+  /* Animation Transforms */
+  --animation-translate-hover: -3px;
+  --animation-translate-active: 1px;
+}
+
+/* ===== Hover Effects and Transitions ===== */
+
+/* Interactive Element Base */
+.interactive {
+  transition: transform var(--animation-duration-normal) var(--animation-easing-standard),
+              box-shadow var(--animation-duration-normal) var(--animation-easing-standard),
+              background-color var(--animation-duration-normal) var(--animation-easing-standard),
+              border-color var(--animation-duration-normal) var(--animation-easing-standard),
+              color var(--animation-duration-normal) var(--animation-easing-standard);
+}
+
+/* Card Hover Effects */
+.card {
+  transition: transform var(--animation-duration-normal) var(--animation-easing-standard),
+              box-shadow var(--animation-duration-normal) var(--animation-easing-standard),
+              background-color var(--animation-duration-normal) var(--animation-easing-standard);
+  will-change: transform, box-shadow;
+}
+
+.card:hover {
+  transform: translateY(var(--animation-translate-hover));
+  box-shadow: var(--shadow-md);
+}
+
+.card:active {
+  transform: translateY(var(--animation-translate-active));
+}
+
+/* Button Hover Effects */
+.btn {
+  position: relative;
+  overflow: hidden;
+  transition: transform var(--animation-duration-normal) var(--animation-easing-standard),
+              box-shadow var(--animation-duration-normal) var(--animation-easing-standard),
+              background var(--animation-duration-normal) var(--animation-easing-standard);
+  will-change: transform, box-shadow;
+}
+
+.btn:hover {
+  transform: translateY(var(--animation-translate-hover));
+  box-shadow: 0 6px 12px rgba(59, 130, 246, 0.3);
+}
+
+.btn:active {
+  transform: translateY(var(--animation-translate-active)) scale(var(--animation-scale-active));
+  box-shadow: 0 2px 4px rgba(59, 130, 246, 0.2);
+}
+
+/* Form Control Hover Effects */
+.form-control {
+  transition: border-color var(--animation-duration-normal) var(--animation-easing-standard),
+              box-shadow var(--animation-duration-normal) var(--animation-easing-standard),
+              background-color var(--animation-duration-normal) var(--animation-easing-standard);
+}
+
+.form-control:hover:not(:focus) {
+  border-color: var(--primary-300);
+}
+
+.form-control:focus {
+  transform: scale(1.005);
+}
+
+/* Navigation Link Hover Effects */
+.nav-link {
+  transition: all var(--animation-duration-fast) var(--animation-easing-standard);
+  position: relative;
+}
+
+.nav-link:hover {
+  transform: translateY(-2px);
+}
+
+.nav-link:active {
+  transform: translateY(0);
+}
+
+.nav-link::after {
+  content: '';
+  position: absolute;
+  bottom: -4px;
+  left: 50%;
+  width: 0;
+  height: 2px;
+  background: white;
+  transition: width var(--animation-duration-normal) var(--animation-easing-decelerate),
+              left var(--animation-duration-normal) var(--animation-easing-decelerate);
+  border-radius: var(--border-radius-full);
+}
+
+.nav-link:hover::after {
+  width: 100%;
+  left: 0;
+}
+
+/* ===== Click Animations and Feedback ===== */
+
+/* Button Ripple Effect */
+.btn .ripple {
+  position: absolute;
+  border-radius: 50%;
+  background-color: rgba(255, 255, 255, 0.4);
+  transform: scale(0);
+  animation: ripple var(--animation-duration-slow) var(--animation-easing-standard);
+  pointer-events: none;
+}
+
+@keyframes ripple {
+  to {
+    transform: scale(4);
+    opacity: 0;
+  }
+}
+
+/* Click Feedback Animation */
+.click-feedback {
+  animation: click-pulse var(--animation-duration-normal) var(--animation-easing-bounce);
+}
+
+@keyframes click-pulse {
+  0% { transform: scale(1); }
+  50% { transform: scale(var(--animation-scale-active)); }
+  100% { transform: scale(1); }
+}
+
+/* Form Element Click Animation */
+.form-control:focus + .form-label {
+  animation: label-pulse var(--animation-duration-normal) var(--animation-easing-bounce);
+}
+
+@keyframes label-pulse {
+  0% { transform: translateY(-170%) scale(0.85); }
+  50% { transform: translateY(-170%) scale(0.95); }
+  100% { transform: translateY(-170%) scale(0.85); }
+}
+
+/* ===== Content Appearance Animations ===== */
+
+/* Fade In Animation */
+.fade-in {
+  animation: fade-in var(--animation-duration-normal) var(--animation-easing-standard) forwards;
+}
+
+@keyframes fade-in {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+/* Slide In Animation */
+.slide-in-up {
+  animation: slide-in-up var(--animation-duration-normal) var(--animation-easing-decelerate) forwards;
+}
+
+@keyframes slide-in-up {
+  from { 
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to { 
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.slide-in-left {
+  animation: slide-in-left var(--animation-duration-normal) var(--animation-easing-decelerate) forwards;
+}
+
+@keyframes slide-in-left {
+  from { 
+    opacity: 0;
+    transform: translateX(-20px);
+  }
+  to { 
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+.slide-in-right {
+  animation: slide-in-right var(--animation-duration-normal) var(--animation-easing-decelerate) forwards;
+}
+
+@keyframes slide-in-right {
+  from { 
+    opacity: 0;
+    transform: translateX(20px);
+  }
+  to { 
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+/* Scale Animation */
+.scale-in {
+  animation: scale-in var(--animation-duration-normal) var(--animation-easing-decelerate) forwards;
+}
+
+@keyframes scale-in {
+  from { 
+    opacity: 0;
+    transform: scale(0.9);
+  }
+  to { 
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+/* Staggered Animation for Lists */
+.stagger-item {
+  opacity: 0;
+}
+
+.stagger-item:nth-child(1) { animation: stagger-fade-in var(--animation-duration-normal) var(--animation-easing-standard) forwards 0.1s; }
+.stagger-item:nth-child(2) { animation: stagger-fade-in var(--animation-duration-normal) var(--animation-easing-standard) forwards 0.2s; }
+.stagger-item:nth-child(3) { animation: stagger-fade-in var(--animation-duration-normal) var(--animation-easing-standard) forwards 0.3s; }
+.stagger-item:nth-child(4) { animation: stagger-fade-in var(--animation-duration-normal) var(--animation-easing-standard) forwards 0.4s; }
+.stagger-item:nth-child(5) { animation: stagger-fade-in var(--animation-duration-normal) var(--animation-easing-standard) forwards 0.5s; }
+
+@keyframes stagger-fade-in {
+  from { 
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to { 
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Card Appearance Animation */
+.card {
+  animation: card-appear var(--animation-duration-slow) var(--animation-easing-standard) forwards;
+}
+
+@keyframes card-appear {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.card:nth-child(2) { animation-delay: 0.1s; }
+.card:nth-child(3) { animation-delay: 0.2s; }
+.card:nth-child(4) { animation-delay: 0.3s; }
+
+/* ===== Form Submission Feedback Animations ===== */
+
+/* Form Success Animation */
+.form-success {
+  animation: form-success var(--animation-duration-slow) var(--animation-easing-bounce);
+}
+
+@keyframes form-success {
+  0% { transform: translateY(0); }
+  30% { transform: translateY(-10px); }
+  60% { transform: translateY(5px); }
+  100% { transform: translateY(0); }
+}
+
+/* Form Error Animation */
+.form-error {
+  animation: form-error var(--animation-duration-normal) var(--animation-easing-standard);
+}
+
+@keyframes form-error {
+  0%, 100% { transform: translateX(0); }
+  20%, 60% { transform: translateX(-5px); }
+  40%, 80% { transform: translateX(5px); }
+}
+
+/* Form Submission Animation */
+.form-submitting {
+  position: relative;
+  overflow: hidden;
+}
+
+.form-submitting::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 4px;
+  background: var(--primary-gradient);
+  animation: form-progress var(--animation-duration-slow) var(--animation-easing-standard) infinite;
+}
+
+@keyframes form-progress {
+  0% { transform: translateX(-100%); }
+  100% { transform: translateX(100%); }
+}
+
+/* Input Validation Animation */
+.input-validating {
+  animation: input-validating var(--animation-duration-normal) var(--animation-easing-standard);
+}
+
+@keyframes input-validating {
+  0% { border-color: var(--border); }
+  50% { border-color: var(--primary); }
+  100% { border-color: var(--border); }
+}
+
+/* Success Checkmark Animation */
+.success-checkmark {
+  width: 80px;
+  height: 80px;
+  margin: 0 auto;
+  position: relative;
+}
+
+.success-checkmark .check-icon {
+  width: 80px;
+  height: 80px;
+  position: relative;
+  border-radius: 50%;
+  box-sizing: content-box;
+  border: 4px solid var(--success);
+}
+
+.success-checkmark .check-icon::before {
+  top: 3px;
+  left: -2px;
+  width: 30px;
+  transform-origin: 100% 50%;
+  border-radius: 100px 0 0 100px;
+}
+
+.success-checkmark .check-icon::after {
+  top: 0;
+  left: 30px;
+  width: 60px;
+  transform-origin: 0 50%;
+  border-radius: 0 100px 100px 0;
+  animation: rotate-circle 4.25s ease-in;
+}
+
+.success-checkmark .check-icon::before, .success-checkmark .check-icon::after {
+  content: '';
+  height: 100px;
+  position: absolute;
+  background: var(--card-background);
+  transform: rotate(-45deg);
+}
+
+.success-checkmark .check-icon .icon-line {
+  height: 5px;
+  background-color: var(--success);
+  display: block;
+  border-radius: 2px;
+  position: absolute;
+  z-index: 10;
+}
+
+.success-checkmark .check-icon .icon-line.line-tip {
+  top: 46px;
+  left: 14px;
+  width: 25px;
+  transform: rotate(45deg);
+  animation: icon-line-tip 0.75s;
+}
+
+.success-checkmark .check-icon .icon-line.line-long {
+  top: 38px;
+  right: 8px;
+  width: 47px;
+  transform: rotate(-45deg);
+  animation: icon-line-long 0.75s;
+}
+
+.success-checkmark .check-icon .icon-circle {
+  top: -4px;
+  left: -4px;
+  z-index: 10;
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  position: absolute;
+  box-sizing: content-box;
+  border: 4px solid var(--success-light);
+  animation: icon-circle 0.75s;
+}
+
+.success-checkmark .check-icon .icon-fix {
+  top: 8px;
+  width: 5px;
+  left: 26px;
+  z-index: 1;
+  height: 85px;
+  position: absolute;
+  transform: rotate(-45deg);
+  background-color: var(--card-background);
+}
+
+@keyframes rotate-circle {
+  0% { transform: rotate(-45deg); }
+  5% { transform: rotate(-45deg); }
+  12% { transform: rotate(-405deg); }
+  100% { transform: rotate(-405deg); }
+}
+
+@keyframes icon-line-tip {
+  0% { width: 0; left: 1px; top: 19px; }
+  54% { width: 0; left: 1px; top: 19px; }
+  70% { width: 50px; left: -8px; top: 37px; }
+  84% { width: 17px; left: 21px; top: 48px; }
+  100% { width: 25px; left: 14px; top: 45px; }
+}
+
+@keyframes icon-line-long {
+  0% { width: 0; right: 46px; top: 54px; }
+  65% { width: 0; right: 46px; top: 54px; }
+  84% { width: 55px; right: 0px; top: 35px; }
+  100% { width: 47px; right: 8px; top: 38px; }
+}
+
+@keyframes icon-circle {
+  0% { transform: scale(0); }
+  40% { transform: scale(0); }
+  100% { transform: scale(1); }
+}
+
+/* Error X Animation */
+.error-x {
+  width: 80px;
+  height: 80px;
+  margin: 0 auto;
+  position: relative;
+}
+
+.error-x .x-icon {
+  width: 80px;
+  height: 80px;
+  position: relative;
+  border-radius: 50%;
+  box-sizing: content-box;
+  border: 4px solid var(--error);
+}
+
+.error-x .x-icon .icon-line {
+  height: 5px;
+  background-color: var(--error);
+  display: block;
+  border-radius: 2px;
+  position: absolute;
+  z-index: 10;
+  top: 37px;
+  width: 54px;
+}
+
+.error-x .x-icon .icon-line.line-left {
+  left: 13px;
+  transform: rotate(45deg);
+  animation: x-line-left 0.75s;
+}
+
+.error-x .x-icon .icon-line.line-right {
+  right: 13px;
+  transform: rotate(-45deg);
+  animation: x-line-right 0.75s;
+}
+
+.error-x .x-icon .icon-circle {
+  top: -4px;
+  left: -4px;
+  z-index: 10;
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  position: absolute;
+  box-sizing: content-box;
+  border: 4px solid var(--error-light);
+  animation: icon-circle 0.75s;
+}
+
+@keyframes x-line-left {
+  0% { width: 0; left: 40px; }
+  40% { width: 0; left: 40px; }
+  100% { width: 54px; left: 13px; }
+}
+
+@keyframes x-line-right {
+  0% { width: 0; right: 40px; }
+  40% { width: 0; right: 40px; }
+  100% { width: 54px; right: 13px; }
+}
+
+/* ===== Hover Effect Enhancements ===== */
+
+/* Button Glow Effect */
+.btn:hover::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: radial-gradient(circle at center, rgba(255, 255, 255, 0.3) 0%, transparent 70%);
+  opacity: 0;
+  animation: button-glow var(--animation-duration-slow) var(--animation-easing-standard) forwards;
+}
+
+@keyframes button-glow {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+/* Card Hover Highlight */
+.card::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  border-radius: var(--border-radius-lg);
+  box-shadow: 0 0 0 2px var(--primary-300);
+  opacity: 0;
+  transition: opacity var(--animation-duration-normal) var(--animation-easing-standard);
+  pointer-events: none;
+}
+
+.card:hover::after {
+  opacity: 0.3;
+}
+
+/* Input Focus Ring Animation */
+.form-control:focus {
+  animation: focus-ring-pulse 2s var(--animation-easing-standard) infinite;
+}
+
+@keyframes focus-ring-pulse {
+  0% { box-shadow: 0 0 0 0 rgba(59, 130, 246, 0.4); }
+  70% { box-shadow: 0 0 0 6px rgba(59, 130, 246, 0); }
+  100% { box-shadow: 0 0 0 0 rgba(59, 130, 246, 0); }
+}
+
+/* ===== Reduced Motion Support ===== */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
